@@ -1,1904 +1,1309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Booking Manager - Trou aux Biches, Mauritius</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMMO HOME(MAURITIUS)LTD</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000;
+      color: white;
+    }
 
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    .email-icon i {
+      color: white;
+      font-size: 20px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
 
-    <style>
-        :root {
-            --bg-primary: #f5f7fa;
-            --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
-            --text-primary: #1a1d23;
-            --text-secondary: #5f6b7a;
-            --text-muted: #8b95a5;
-            --border-color: #e8ecf1;
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --info: #3b82f6;
-            --nav-bg: #ffffff;
-            --card-header-bg: #f9fafb;
-            --input-bg: #ffffff;
-            --input-border: #d1d5db;
-            --table-stripe: #f9fafb;
-            --modal-overlay: rgba(0, 0, 0, 0.5);
-            --badge-soft-bg: #f0f4ff;
-            --toast-bg: #ffffff;
-            --calendar-today: #2563eb;
-            --calendar-other-month: #d1d5db;
-        }
+    .email-icon:hover i {
+      color: #ffcc00;
+    }
 
-        .dark-mode {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: #1e293b;
-            --text-primary: #e2e8f0;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --nav-bg: #1e293b;
-            --card-header-bg: #253349;
-            --input-bg: #1e293b;
-            --input-border: #475569;
-            --table-stripe: #253349;
-            --modal-overlay: rgba(0, 0, 0, 0.7);
-            --badge-soft-bg: #1e3a5f;
-            --toast-bg: #1e293b;
-            --calendar-today: #3b82f6;
-            --calendar-other-month: #64748b;
-        }
-
-        * {
-            box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        /* Navbar */
-        .navbar-custom {
-            background: var(--nav-bg);
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 1030;
-            padding: 0.5rem 1rem;
-            backdrop-filter: blur(10px);
-        }
-        .navbar-brand-custom {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--accent) !important;
-            letter-spacing: -0.3px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .navbar-brand-custom i {
-            font-size: 1.5rem;
-        }
-        .nav-tabs-custom {
-            display: flex;
-            gap: 0.25rem;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .nav-tabs-custom::-webkit-scrollbar {
-            display: none;
-        }
-        .nav-tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            padding: 0.6rem 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .nav-tab-btn:hover {
-            background: var(--badge-soft-bg);
-            color: var(--accent);
-        }
-        .nav-tab-btn.active {
-            background: var(--accent);
-            color: #ffffff;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
-        }
-        .nav-tab-btn i {
-            font-size: 1.1rem;
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 38px;
-            height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-        .theme-toggle:hover {
-            background: var(--badge-soft-bg);
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* Notification Bell */
-        .notif-bell {
-            position: relative;
-            background: transparent;
-            border: none;
-            font-size: 1.3rem;
-            cursor: pointer;
-            color: var(--text-primary);
-            padding: 0.3rem;
-            transition: color 0.2s ease;
-        }
-        .notif-bell:hover {
-            color: var(--accent);
-        }
-        .notif-badge {
-            position: absolute;
-            top: -4px;
-            right: -6px;
-            background: var(--danger);
-            color: #fff;
-            font-size: 0.65rem;
-            font-weight: 700;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse-badge 2s infinite;
-        }
-        @keyframes pulse-badge {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.25);
-            }
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 1.5rem 1rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .tab-pane-custom {
-            display: none;
-            animation: fadeSlideIn 0.4s ease;
-        }
-        .tab-pane-custom.active {
-            display: block;
-        }
-        @keyframes fadeSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Dashboard Cards */
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.25rem;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            cursor: default;
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-        .stat-card .stat-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-        }
-        .stat-card .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        .stat-card .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-        .icon-blue {
-            background: #eff6ff;
-            color: #2563eb;
-        }
-        .icon-green {
-            background: #ecfdf5;
-            color: #10b981;
-        }
-        .icon-red {
-            background: #fef2f2;
-            color: #ef4444;
-        }
-        .icon-orange {
-            background: #fffbeb;
-            color: #f59e0b;
-        }
-        .icon-purple {
-            background: #f5f3ff;
-            color: #7c3aed;
-        }
-        .icon-teal {
-            background: #f0fdfa;
-            color: #14b8a6;
-        }
-        .icon-indigo {
-            background: #eef2ff;
-            color: #4f46e5;
-        }
-        .dark-mode .icon-blue {
-            background: #1e3a5f;
-        }
-        .dark-mode .icon-green {
-            background: #1a3d2f;
-        }
-        .dark-mode .icon-red {
-            background: #3d1f1f;
-        }
-        .dark-mode .icon-orange {
-            background: #3d2f1a;
-        }
-        .dark-mode .icon-purple {
-            background: #2d1f3d;
-        }
-        .dark-mode .icon-teal {
-            background: #1a3d35;
-        }
-        .dark-mode .icon-indigo {
-            background: #1f2d4d;
-        }
-
-        /* Studio Cards */
-        .studio-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 1.25rem;
-            border: 2px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            text-align: center;
-            position: relative;
-            cursor: pointer;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .studio-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-        .studio-card.available {
-            border-color: #10b981;
-            background: linear-gradient(135deg, var(--bg-card) 60%, #ecfdf5);
-        }
-        .studio-card.occupied {
-            border-color: #ef4444;
-            background: linear-gradient(135deg, var(--bg-card) 60%, #fef2f2);
-        }
-        .studio-card.arriving {
-            border-color: #f59e0b;
-            background: linear-gradient(135deg, var(--bg-card) 60%, #fffbeb);
-        }
-        .studio-card.departing {
-            border-color: #3b82f6;
-            background: linear-gradient(135deg, var(--bg-card) 60%, #eff6ff);
-        }
-        .dark-mode .studio-card.available {
-            background: linear-gradient(135deg, var(--bg-card) 60%, #1a3d2f);
-        }
-        .dark-mode .studio-card.occupied {
-            background: linear-gradient(135deg, var(--bg-card) 60%, #3d1f1f);
-        }
-        .dark-mode .studio-card.arriving {
-            background: linear-gradient(135deg, var(--bg-card) 60%, #3d2f1a);
-        }
-        .dark-mode .studio-card.departing {
-            background: linear-gradient(135deg, var(--bg-card) 60%, #1e3a5f);
-        }
-        .studio-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1;
-        }
-        .studio-status-badge {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .badge-available {
-            background: #d1fae5;
-            color: #065f46;
-        }
-        .badge-occupied {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-        .badge-arriving {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        .badge-departing {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        /* Table */
-        .table-custom {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-        }
-        .table-custom th {
-            background: var(--card-header-bg);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            border-bottom: 2px solid var(--border-color);
-            white-space: nowrap;
-        }
-        .table-custom td {
-            vertical-align: middle;
-            font-size: 0.9rem;
-        }
-        .table-custom tbody tr {
-            transition: background 0.2s ease;
-        }
-        .table-custom tbody tr:hover {
-            background: var(--table-stripe);
-        }
-
-        /* Buttons */
-        .btn-custom-primary {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 0.55rem 1.2rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
-        }
-        .btn-custom-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
-            color: #fff;
-        }
-        .btn-custom-sm {
-            padding: 0.3rem 0.7rem;
-            font-size: 0.8rem;
-            border-radius: 8px;
-        }
-
-        /* Toast */
-        .toast-custom {
-            background: var(--toast-bg);
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-        }
-
-        /* Modal */
-        .modal-content-custom {
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-lg);
-        }
-        .modal-header-custom {
-            border-bottom: 1px solid var(--border-color);
-            background: var(--card-header-bg);
-            border-radius: 16px 16px 0 0;
-        }
-
-        /* Calendar */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-        }
-        .calendar-day-header {
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            padding: 0.5rem 0;
-        }
-        .calendar-day {
-            aspect-ratio: 1;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.85rem;
-            position: relative;
-            border: 2px solid transparent;
-            transition: all 0.2s ease;
-            background: var(--bg-card);
-            min-width: 36px;
-        }
-        .calendar-day:hover {
-            border-color: var(--accent);
-            background: var(--badge-soft-bg);
-        }
-        .calendar-day.today {
-            border-color: var(--calendar-today);
-            font-weight: 700;
-        }
-        .calendar-day.other-month {
-            color: var(--calendar-other-month);
-            pointer-events: none;
-        }
-        .calendar-day .booking-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 6px;
-        }
-        .dot-pending {
-            background: #f59e0b;
-        }
-        .dot-confirmed {
-            background: #3b82f6;
-        }
-        .dot-checked-in {
-            background: #10b981;
-        }
-        .dot-checked-out {
-            background: #6b7280;
-        }
-        .dot-cancelled {
-            background: #ef4444;
-        }
-
-        /* Print */
-        @media print {
-            body {
-                background: #fff !important;
-                color: #000 !important;
-            }
-            .navbar-custom,
-            .no-print,
-            .theme-toggle,
-            .notif-bell,
-            .btn,
-            .nav-tabs-custom,
-            footer .text-muted {
-                display: none !important;
-            }
-            .main-content {
-                padding: 0 !important;
-                max-width: 100% !important;
-            }
-            .stat-card,
-            .studio-card,
-            .table-custom {
-                box-shadow: none !important;
-                border: 1px solid #ccc !important;
-                break-inside: avoid;
-            }
-            .tab-pane-custom {
-                display: block !important;
-                page-break-before: always;
-            }
-            .tab-pane-custom:first-of-type {
-                page-break-before: auto;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar-brand-custom span {
-                font-size: 0.95rem;
-            }
-            .nav-tab-btn {
-                padding: 0.45rem 0.7rem;
-                font-size: 0.78rem;
-                border-radius: 8px;
-            }
-            .nav-tab-btn i {
-                font-size: 0.95rem;
-            }
-            .stat-card {
-                padding: 1rem;
-            }
-            .stat-card .stat-value {
-                font-size: 1.4rem;
-            }
-            .studio-card {
-                min-height: 150px;
-                padding: 1rem;
-            }
-            .studio-number {
-                font-size: 1.8rem;
-            }
-            .calendar-day {
-                font-size: 0.7rem;
-                border-radius: 6px;
-            }
-        }
-        @media (max-width: 480px) {
-            .nav-tabs-custom {
-                gap: 0.1rem;
-            }
-            .nav-tab-btn {
-                padding: 0.35rem 0.5rem;
-                font-size: 0.7rem;
-                border-radius: 6px;
-            }
-            .nav-tab-btn i {
-                font-size: 0.8rem;
-            }
-            .stat-card .stat-value {
-                font-size: 1.2rem;
-            }
-            .stat-card .stat-label {
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Loading Spinner */
-        .spinner-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.4s ease;
-        }
-        .spinner-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
+    .property-card {
+      margin-bottom: 30px;
+      transition: transform 0.3s ease;
+    }
+    .property-card:hover {
+      transform: translateY(-5px);
+    }
+    .property-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    footer {
+      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23ddd" x="0" y="0" width="20" height="20"/><rect fill="%23ddd" x="40" y="0" width="20" height="20"/><rect fill="%23ddd" x="80" y="0" width="20" height="20"/><rect fill="%23ddd" x="0" y="40" width="20" height="20"/><rect fill="%23ddd" x="40" y="40" width="20" height="20"/><rect fill="%23ddd" x="80" y="40" width="20" height="20"/><rect fill="%23ddd" x="0" y="80" width="20" height="20"/><rect fill="%23ddd" x="40" y="80" width="20" height="20"/><rect fill="%23ddd" x="80" y="80" width="20" height="20"/></svg>');
+      background-size: 300px;
+      background-repeat: repeat;
+      color: white;
+      padding: 60px 0;
+      margin-top: 60px;
+      text-align: center;
+    }
+    .director-photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+    }
+    .card-body p {
+      margin-bottom: 5px;
+    }
+    .filter-controls {
+      margin-bottom: 30px;
+    }
+    .glow-text {
+      font-weight: bold;
+      font-size: 2rem;
+      background: linear-gradient(90deg, #f9d423, #ff4e50);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h1, h2, .card-title {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .social-icons i {
+      font-size: 28px;
+      margin: 0 15px;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+    .social-icons i:hover {
+      transform: scale(1.3);
+      color: #ffcc00;
+    }
+    .director-description {
+      font-style: italic;
+      color: #e0e0e0;
+    }
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: white;
+    }
+    .btn-primary {
+      background: linear-gradient(45deg, #1877f2, #0d6efd);
+      border: none;
+    }
+    .btn-success {
+      background: linear-gradient(45deg, #25d366, #198754);
+      border: none;
+    }
+    .btn-outline-light {
+      border-color: #6c757d;
+    }
+    .btn-outline-light:hover {
+      background-color: #6c757d;
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffcc00;
+      color: #000;
+      padding: 15px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Loading Spinner -->
-    <div class="spinner-overlay" id="spinnerOverlay">
-        <div class="text-center">
-            <div class="spinner-border text-primary mb-3" role="status" style="width:3rem;height:3rem;">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <p class="text-muted fw-semibold">Loading Studio Booking Manager...</p>
-        </div>
+  <div class="notification" id="linkNotification">
+    You are being redirected to the Facebook album for this property
+  </div>
+
+  <header class="text-center p-4 bg-dark gold-glow">
+    <img src="images/yahoo2.jpg" alt="Logo" height="180" class="mb-3">
+    <img src="images/yahoo.jpg" alt="Cover" class="img-fluid mt-3">
+    <div class="mt-4">
+      <p>
+        <strong>𝗥𝗘𝗔𝗟 𝗘𝗦𝗧𝗔𝗧𝗘 𝗔𝗖𝗧𝗜𝗩𝗜𝗧𝗜𝗘𝗦 🇲🇺</strong><br>
+        🏠 Vente/Achat Terrain & Maisons<br>
+        🏠 location Courte & Longue Durée ⌛️<br>
+        🏠 Location Campement 🔥 Week-end 🏊️👨‍👧‍👦 Vacances ✈️🧳<br>
+        🏠 Gestion Locative 📉<br>
+        🏠 AI 🤖 Inspiration 💡 Home Architectural Design's Ideas 📸
+      </p>
+    </div>
+  </header>
+
+  <main class="container mt-5">
+    <div class="filter-controls row mb-4">
+      <div class="col-md-4">
+        <select class="form-select" id="typeFilter">
+          <option value="all">All Types</option>
+          <option value="rent">For Rent</option>
+          <option value="sale">For Sale</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" id="locationFilter">
+          <option value="all">All Locations</option>
+          <option value="Grand Baie">Grand Baie</option>
+          <option value="Flic en Flac">Flic en Flac</option>
+          <option value="Curepipe">Curepipe</option>
+          <option value="Port Louis">Port Louis</option>
+          <option value="Quatre Bornes">Quatre Bornes</option>
+          <option value="Rose Hill">Rose Hill</option>
+          <option value="Triolet">Triolet</option>
+          <option value="Mahebourg">Mahebourg</option>
+          <option value="Goodlands">Goodlands</option>
+          <option value="Vacoas">Vacoas</option>
+          <option value="Mont Choisy">Mont Choisy</option>
+          <option value="Tamarin">Tamarin</option>
+          <option value="Trou aux Biches">Trou aux Biches</option>
+          <option value="Flacq">Flacq</option>
+          <option value="Albion">Albion</option>
+          <option value="Pointe aux Cannoniers">Pointe aux Cannoniers</option>
+          <option value="Fond Du Sac">Fond Du Sac</option>
+          <option value="Calodyne">Calodyne</option>
+           <option value="Pereybere">Pereybere</option>
+           <option value="Belle Mare">Belle Mare</option>
+          <option value="Pointe aux Sables">Pointe aux Sables</option>
+           <option value="Moka">Moka</option>
+           <option value="Bain Boeuf">Bain Boeuf</option>
+<option value="Grand Gaube">Grand Gaube</option>
+          <option value="Mont-Mascal">Mont-Mascal</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-outline-warning w-100" id="resetFilters">Reset Filters</button>
+      </div>
     </div>
 
-    <!-- Toast Container -->
-    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index:9999;" id="toastContainer"></div>
+    <section>
+      <h2 class="mb-4 glow-text">🏠 Properties</h2>
+      <div class="row" id="property-listings"></div>
+    </section>
+  </main>
 
-    <!-- ==================== NAVBAR ==================== -->
-    <nav class="navbar-custom d-flex align-items-center justify-content-between flex-wrap gap-2">
-        <a class="navbar-brand-custom text-decoration-none" href="#" onclick="switchTab('dashboard')">
-            <i class="bi bi-buildings"></i> <span>StudioBooking<span class="d-none d-sm-inline"> Manager</span></span>
+  <footer>
+    <h3 class="glow-text">Meet Our Directors</h3>
+    <div class="d-flex justify-content-center gap-5 flex-wrap mt-4">
+      <div>
+        <img src="images/Kervin.jpg" alt="Director 1" class="director-photo mb-2">
+        <h5>Kervin</h5>
+        <p class="mb-1">Founder  & General Managing Director</p>
+        <p class="director-description">Oversees company strategy and ensures top-level service for all clients.</p>
+      </div>
+      <div>
+        <img src="https:images/amar.jpg" alt="Director 2" class="director-photo mb-2">
+        <h5>Amar St-Clair</h5>
+        <p class="mb-1">Co-Founder & Digital Media/Marketing Director</p>
+        <p class="director-description">Handles day-to-day operations and manages client-property coordination.</p>
+      </div>
+    </div>
+    <div class="social-icons mt-4">
+      <div class="mt-4 email-icon">
+        <a href="mailto:immohomemauritius@gmail.com">
+          <i class="fas fa-envelope"></i> contact us
         </a>
-        <div class="nav-tabs-custom" id="navTabs">
-            <button class="nav-tab-btn active" data-tab="dashboard"><i class="bi bi-speedometer2"></i> <span class="d-none d-sm-inline">Dashboard</span></button>
-            <button class="nav-tab-btn" data-tab="bookings"><i class="bi bi-calendar-check"></i> <span class="d-none d-sm-inline">Bookings</span></button>
-            <button class="nav-tab-btn" data-tab="studios"><i class="bi bi-grid-3x3-gap"></i> <span class="d-none d-sm-inline">Studios</span></button>
-            <button class="nav-tab-btn" data-tab="calendar"><i class="bi bi-calendar-month"></i> <span class="d-none d-sm-inline">Calendar</span></button>
-            <button class="nav-tab-btn" data-tab="reports"><i class="bi bi-graph-up"></i> <span class="d-none d-sm-inline">Reports</span></button>
-        </div>
-        <div class="d-flex align-items-center gap-2">
-            <button class="notif-bell" id="notifBell" title="Notifications" onclick="toggleNotifications()">
-                <i class="bi bi-bell"></i>
-                <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
-            </button>
-            <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode" onclick="toggleTheme()">
-                <i class="bi bi-moon-stars" id="themeIcon"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Notifications Dropdown -->
-    <div class="position-fixed top-0 end-0 mt-5 pt-2 me-2" style="z-index:1040; display:none;" id="notifDropdown">
-        <div class="card shadow-lg border rounded-3 p-3" style="min-width:300px;max-width:95vw;background:var(--bg-card);">
-            <h6 class="fw-bold mb-2"><i class="bi bi-bell-fill me-1"></i> Notifications</h6>
-            <div id="notifList" class="small" style="max-height:250px;overflow-y:auto;">
-                <p class="text-muted mb-0">No notifications</p>
-            </div>
-        </div>
+      </div>
+      <a href="https://tiktok.com/@immo_home_mauritius_ltd" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=100092222870205" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
+  </footer>
 
-    <!-- ==================== MAIN CONTENT ==================== -->
-    <div class="main-content">
+  <script>
+    const properties = [
+      {
+        title: "Terrain résidentiel – Albion (Exclusivité)",
+        type: "sale",
+        location: "Albion",
+        image: "images/property5.jpg",
+        facebookLink: "https://www.facebook.com/share/16sGM5yxEC/",
+        description: `‼️ <strong>Offre de Vente</strong> 🔥<strong>EXCLUSIVITÉ</strong>🔥<br>
+        📌 <strong>Localisation :</strong> Albion, Morcellement Belle Vue Phare<br>
+        📐 <strong>Superficie :</strong> 892 m² (20 perches)<br>
+        🏷️ <strong>Type de bien :</strong> Terrain Nu Résidentiel<br>
+        💰 <strong>Prix de vente :</strong> Rs 5.5M 😱<br><br>
+        <strong>Détails de l'Offre :</strong><br>
+        - Occasion en or à ne pas manquer ❗️<br>
+        ✅ Lot 200 : 446.3 m²<br>
+        ✅ Lot 282 : 446.3 m²<br>
+        ⚠️ À vendre en urgence dans l'Avenue des Rosiers, juste en face de l'Église Assemblée de Dieu (AD)<br>
+        🌊 Vue mer exceptionnelle 👀`
+      },
+      {
+  "title": "Appartement lumineux et spacieux à Pointe aux Canonniers",
+  "type": "Location Courte / Moyenne Durée",
+  "location": "Pointe aux Canonniers",
+  "description": "Appartement lumineux et spacieux, situé au 1er étage d’une maison sécurisée avec jardin tropical partagé. Disponible uniquement pour location de courte ou moyenne durée (moins d’un an). Sans aucun vis-à-vis et avec entrée indépendante.\n\n📍 Emplacement privilégié :\n- Face à l’une des plus belles et discrètes plages du Nord 🏖🌊\n- Proximité immédiate d’un arrêt de bus 🚍🚏\n- À quelques minutes de Grand Baie et de toutes ses commodités 🛒🍽\n\n✨ Caractéristiques du bien :\n- 3 chambres climatisées 🛌\n- Grande salle de bain moderne 🛀🚽\n- Cuisine américaine ouverte sur un vaste séjour / salle à manger 🍳\n- 2 grandes terrasses couvertes, sans vis-à-vis 🌿\n- Coffre-fort 🔒\n- Entrée indépendante et sécurisée 🚪\n\nUn cadre idéal pour un séjour relaxant au Nord de l’île.",
+  "image": "images/roi.jpg",
+  "facebookLink": "https://www.facebook.com/ImmoHomeMauritius/posts/pfbid0MY1uzefb3xJyT57yPaZMP89t38N7zvv8Vm7J77PNxvaW7qAZQYCVcccKAxHAGvmkl?rdid=6lTfaqcsyUNDtehK#"
+},
+      {
+  "title": "Appartement moderne 2 chambres à Grand Baie",
+  "type": "Location Longue Durée",
+  "location": "Grand Baie",
+  "description": "Appartement moderne et lumineux de 2 chambres, situé au 2ᵉ étage d’une résidence récente et calme, au fond d’une impasse.\n\n✨ Points forts :\n- Résidence récente et sécurisée ✨\n- À deux pas de Super U 🛒, arrêts de bus 🚍🚏, commerces 🛍 et plages 🌊🏝\n- Terrasse privée 🌿\n- Rooftop commun avec vue mer 🌅\n- Parking privé inclus 🅿️\n\n✔ Syndic & CWA inclus\n❌ Électricité & Internet exclus\n\n📍 Emplacement idéal pour vivre au calme tout en restant proche de toutes les commodités.",
+  "price": "Rs 30,000 / mois",
+  "image": "images/we.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=730754556675300&id=100092222870205&rdid=mg7e3vTDFIooAivS#"
+},
+      {
+  "title": "Villa neuve jamais habitée à Grand Baie",
+  "type": "Rent",
+  "location": "Grand Baie",
+  "description": "Pré-Marketing : Villa neuve et jamais habitée, nichée dans une résidence privée exclusive de seulement 6 villas.\n\n✨ Points forts :\n- Animaux acceptés 🐾\n- Première location, maison toute neuve 🆕\n- Quartier calme et résidentiel, à seulement 3 minutes de Super U 🛒, de la plage 🏖🌊 et de toutes commodités 🚍🛍\n\n🏠 Composition :\n- Rez-de-chaussée :\n  • 1 chambre donnant sur la piscine 🛌\n  • Salon & salle à manger lumineux 🛋\n  • Cuisine ouverte entièrement équipée 🍳\n  • Salle de bain + toilette 🚿🚽\n- Étage :\n  • 2 grandes chambres avec terrasse couverte 🌿\n  • 1 suite parentale avec dressing et terrasse privée 🛌\n  • Chambres climatisées ❄️\n\n🚗 Extérieur :\n- Garage couvert + parking pour 3 voitures 🅿️\n- Cour aménagée 🌴\n- Piscine privée 🏊‍♀️\n\n✅ Avantages :\n- Résidence privée et sécurisée 🔐\n- Villa individuelle avec intimité préservée\n- Proche plage, commerces et restaurants",
+  "price": "Rs 55,000 / mois",
+  "image": "images/ai.jpg",
+  "facebookLink": "https://www.facebook.com/share/p/1Ce5yC3AEL/"
+},
 
-        <!-- DASHBOARD TAB -->
-        <div class="tab-pane-custom active" id="tab-dashboard">
-            <div class="row g-3 mb-4" id="dashboardStats">
-                <!-- Filled by JS -->
-            </div>
-            <div class="row g-3">
-                <div class="col-12">
-                    <div class="card border rounded-3 shadow-sm" style="background:var(--bg-card);">
-                        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2" style="background:var(--card-header-bg);">
-                            <h5 class="mb-0 fw-semibold"><i class="bi bi-clock-history me-2"></i>Recent Bookings</h5>
-                        </div>
-                        <div class="card-body p-0 table-responsive">
-                            <table class="table table-custom mb-0" id="dashboardRecentTable">
-                                <thead><tr><th>Client</th><th>Studio</th><th>Check-in</th><th>Check-out</th><th>Status</th><th>Balance</th></tr></thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
+      {
+  "title": "Studio moderne climatisé à Flic en Flac",
+  "type": "Rent",
+  "location": "Flic en Flac",
+  "description": "Studio moderne, climatisé, totalement meublé et équipé. Situé au rez-de-chaussée d’une propriété de seulement 2 unités, dans un quartier calme et paisible. Idéal pour un couple 💑.\n\n📍 À quelques minutes de la plage 🏖🌊 et de toutes commodités 🚍🛍🛒.",
+  "price": "Rs 20,000 / mois",
+  "image": "images/fbf.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=734745439609545&id=100092222870205&rdid=cPcvN6lvPgm1ZYVD#"
+},
+{
+  "title": "Villa de rêve à Pointe aux Canonniers",
+  "type": "rent",
+  "location": "Pointe aux Canonniers",
+  "description": "Très grande villa individuelle de 2 étages, idéale pour une famille 👨‍👩‍👧‍👦. Située dans un quartier résidentiel calme et verdoyant, à deux pas des plages 🏖⛱️🌊 et des commerces 🛒🛍.\n\n✨ 4 chambres climatisées en suite avec dressing (dont 1 au rez-de-chaussée)\n✨ 5 salles de bain\n✨ Vaste séjour & cuisine américaine\n✨ Grandes terrasses couvertes + kiosque\n✨ Immense jardin & piscine privée 🏊‍♂️\n✨ Garage 2 voitures + parkings 🅿️\n\n✅ Maintenance incluse – ❌ Factures exclues",
+  "price": "Rs 75,000 / mois (négociable)",
+  "image": "images/fb.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=733676736383082&id=100092222870205&rdid=ZenNmO8BxIw0J837#"
+},
+
+
+     
+      {
+  title: "Campement à court terme – Grand Gaube",
+  type: "rent",
+  location: "Grand Gaube",
+  image: "images/rtt.jpg",
+  facebookLink: "https://www.facebook.com/story.php?story_fbid=572288845855206&id=100092222870205&rdid=fNj3YYZvtmPcK9OC#",
+  description: `🏕️<strong>Offre de Location de Campement à Court Terme</strong> (à partir de 2 nuits) 🔥<br>
+  📍<strong>Localisation :</strong> North Side, Grand Gaube<br><br>
+  Nous avons le plaisir de vous proposer ce magnifique campement individuel, idéal pour une retraite relaxante, spécialement conçu pour les personnes très âgées.<br><br>
+
+  ⚠️<strong>Informations sur le Campement :</strong><br>
+  ✅️ <strong>Superficie :</strong> 19 perches, immense cour avec jardin bien entretenu 🌿<br>
+  ✅️ <strong>Capacité :</strong> Peut accueillir plus d’une centaine d’invités 💃🕺🎊🎆<br>
+  ✅️ <strong>Emplacement :</strong> À seulement 4 km de la plage publique d’Ansley, dans un quartier convivial et accueillant 👌<br><br>
+
+  ⚠️<strong>Description de l'Hébergement :</strong><br>
+  ✅️ <strong>4 chambres climatisées</strong> en suite, entièrement équipées et indépendantes, avec accès direct à la piscine 🏊<br>
+  ✅️ Salle de télévision 📺<br>
+  ✅️ Grande cuisine équipée pour vos besoins culinaires 🧑‍🍳<br>
+  ✅️ Parking spacieux 🚘<br>
+  ✅️ Cour bien entretenue avec espace vert 🌳<br><br>
+
+  ⚠️<strong>Atouts :</strong><br>
+  ✅️ <strong>Sécurité :</strong> Propriété clôturée avec barbelés électriques 🔒<br>
+  ✅️ Accès à une <strong>piscine spacieuse</strong> au centre de la villa 🩲👙<br>
+  ✅️ Services inclus : Wi-Fi + télévision par satellite 📡`
+},
+      {
+  "title": "Terrains résidentiels à Grand Baie – Rue de la Paie, Marre Sèche, Petit Raffray",
+  "type": "Vente Terrain Résidentiel",
+  "location": "Grand Baie",
+  "description": "Terrains résidentiels à seulement 2 minutes en voiture du Domaine Alizées. Quartier en plein développement, idéal pour investissement ou projet de construction.\n\n✨ Caractéristiques :\n- 11 lots résidentiels disponibles 🏡\n- Superficie : 6 à 7 perches chacun 📐\n- Permis de construction déjà approuvé ✅\n- Accès facile en voiture 🚗\n- Prêt à vendre dans 4 semaines ⏳\n\n💼 Réservation : 10% chez le notaire.\n📍 Adresse : Rue de la Paie, Marre Sèche, Petit Raffray.\n\nUn emplacement stratégique et une belle opportunité d’investissement à Grand Baie ! 💥",
+  "price": "Rs 2,600,000 à Rs 3,300,000",
+  "image": "images/wa1.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=742623335488422&id=100092222870205&mibextid=Nif5oz&rdid=9kyR4Ew2i28ZljRy#"
+},
+      {
+  "title": "Appartement front de mer à Flic en Flac",
+  "type": "Location Longue Durée",
+  "location": "Flic en Flac",
+  "description": "Appartement meublé & équipé situé au 2ème étage, en front de mer. Bail longue durée (1 an renouvelable).\n\n✨ Caractéristiques :\n- 2 chambres (dont 1 climatisée) 🛌\n- Salon + salle à manger climatisée 🛋\n- Cuisine ouverte climatisée 🍽\n- Salle de bain + toilette 🛀🚽\n- Terrasse / balcon 🌿\n- Parking disponible 🚗\n\n🌊 Les atouts :\n- En face de la plage 🏝️\n- À 1 min du bus stop 🚍\n- Restaurants, supermarché & nightlife Saxo à proximité 🍹🛒\n- Quartier calme & paisible ✨",
+  "price": "Rs 28,000 / mois",
+  "image": "images/ye.jpg",
+  "facebookLink": "https://www.facebook.com/share/p/1D7qNaYgZe/"
+},
+{
+  "title": "Appartement à Louer – Tout inclus",
+  "type": "Location Longue Durée",
+  "location": "Albion",
+  "description": "Appartement rez-de-chaussée avec une magnifique vue mer. Entièrement meublé & équipé. \n\n✨ Inclus dans le loyer :\n- Électricité ⚡\n- Eau 💧\n- Internet 📶\n- Gaz 🔥\n\n🏠 Composition :\n- 2 chambres climatisées ❄️\n- Salon spacieux 🛋\n- Cuisine moderne 🍳\n\n🌟 Atouts :\n- Quartier calme & sécurisé 24/7 🌳\n- Piscine commune (disponible fin novembre) 🏊\n- Parking privé 🚘\n- Rooftop avec vue panoramique 🌅\n\n👨‍👩‍👧 Capacité : 4 adultes + enfants",
+  "price": "Rs 35,000 / mois (tout inclus)",
+  "image": "images/ye1.jpg",
+  "facebookLink": "https://www.facebook.com/share/p/171Tc6emCD/"
+},
+{
+  "title": "Penthouse moderne à Péreybère",
+  "type": "Location Longue Durée",
+  "location": "Pereybere",
+  "description": "Penthouse moderne situé à Péreybère, proche de la plage 🌊. \n\n🏠 Composition :\n- 3 chambres en suite 🛌\n- Cuisine américaine 🍳\n- Séjour climatisé 🛋️\n- 2 grandes terrasses avec vue verdoyante 🌴\n\n🔒 Sécurité 24/7 avec accès privatif via portail sécurisé.\n\n📦 Livraison prévue : octobre 2025\n🛋️ Possibilité d’aménagement mobilier sur demande.",
+  "price": "Rs 50,000 / mois (hors factures)",
+  "image": "images/ye2.jpg",
+  "facebookLink": "https://www.facebook.com/share/p/174y95XJ9u/"
+},
+
+
+{
+  "title": "Terrain à Vendre – Opportunité Unique à Flacq",
+  "type": "Vente Terrain",
+  "location": "Flacq",
+  "description": "Opportunité rare à Flacq ! Deux parcelles de terrain disponibles pour investissement ou projet immobilier dans une région en plein développement.\n\n✨ Caractéristiques :\n- Superficie : 907,49 m² et 4 600 m² 📏\n- Idéal pour projets immobiliers ou résidentiels 🏠\n- Localisation stratégique : Doongoor Road, L’Aventure (Flacq) 📍\n\nUn investissement à fort potentiel dans l’Est de l’île Maurice 🌴",
+  "price": "Rs 10,000,000 (négociable)",
+  "image": "images/wa2.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=742210918862997&id=100092222870205&mibextid=Nif5oz&rdid=ORq4CdHWiJ4wsYJd#"
+},
+{
+  "title": "Opportunité à Saisir – Terrains Résidentiels à Mont-Mascal (Nord)",
+  "type": "Vente Terrain",
+  "location": "Mont-Mascal",
+  "description": "Terrains résidentiels disponibles à Mont-Mascal, dans un quartier calme et en plein développement.\n\n📐 Superficie : 7 perches par lot\n💰 Prix : Rs 315,000 – Rs 320,000 / perche\n\n✨ Idéal pour :\n✔️ Promoteurs\n✔️ Revendeurs\n✔️ Investisseurs\n\n👉 Un investissement stratégique dans l’immobilier du nord !",
+  "price": "Rs 315,000 – Rs 320,000 / perche",
+  "image": "images/wa3.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=738693865881369&id=100092222870205&rdid=1zuHPxsQ7cyJGmVM#"
+},
+      {
+  "title": "Appartements modernes à Grand Baie",
+  "type": "rent",
+  "location": "Grand Baie",
+  "description": "Appartements modernes et neufs situés dans un immeuble résidentiel de construction récente. Idéalement placés au fond d'une impasse dans un quartier paisible, à proximité de Super U 🛒, des arrêts de bus 🚍🚏, des commerces 🛍 et des plages 🌊🏖.\n\n✨ Caractéristiques :\n- Cuisine intégrée 🍳\n- Séjour confortable 🛋️\n- Salle de bain moderne 🚿\n- Terrasse privée 🌿\n- Parking privé 🅿️\n- Accès à un grand rooftop avec vue mer 🌊 partagé entre les résidents",
+  "price": "Appartement 1 chambre : Rs25,000 / mois\nAppartement 2 chambres : Rs30,000 / mois\n(Syndic et CWA inclus, électricité et internet exclus)",
+  "image": "images/wtf1.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=669647899452633&id=100092222870205&rdid=pjsCz92wVrhvxbv5#"
+},
+      {
+  "title": "Villa avec piscine privée à Flic en Flac",
+  "type": "rent",
+  "location": "Flic en Flac, Île Maurice",
+  "description": "Découvrez ce campement privé avec piscine 🏊‍♀️👙 idéalement situé à Flic en Flac, à seulement 5 minutes des plages 🏖🌊 et de toutes commodités 🚏🚍.\n\n✨ Détails de la Villa :\n- Type : Villa de plain-pied 🏠\n- Chambres : 3 chambres climatisées 🛌\n- Espaces de Vie : Séjour spacieux + salle à manger 🛋️\n- Cuisine : Entièrement équipée 🍳\n- Salle de bain : 1 salle de bain 🚿\n- Parking : Espace de parking privé 🅿️\n- Extérieur : Très grande cour avec piscine privée 🌴\n- Confort : Wi-Fi et accès internet 📶\n- Sécurité : Mur sécurisé avec barbelé électrique 🔒\n\nParfait pour des séjours en famille ou entre amis, cet espace allie confort et tranquillité pour des vacances mémorables. 🥰 N’attendez plus pour réserver votre séjour ❗️🏃🏽🏃‍♀️",
+  "price": "Sur demande",
+  "image": "images/wtf.jpg",
+  "facebookLink": "https://www.facebook.com/100092222870205/posts/713990025018420/?rdid=S09TwbZsiPCXvwMW#"
+},
+
+      {
+  title: "Campement Wolmar – Flic en Flac",
+  type: "rent",
+  location: "Flic en Flac",
+  image: "images/ty.jpg",
+  facebookLink: "https://www.facebook.com/story.php?story_fbid=648292034921553&id=100092222870205&rdid=A6apKyjLfgAoCvgg#",
+  description: `🔥<strong>EXCLUSIVITÉ</strong>🔥<br>
+  📌 <strong>Localisation :</strong> Flic en Flac – à seulement <strong>3 minutes à pied</strong> de la plage publique 🏖🌊, arrêt de bus 🚍, Jumbo 🛒, restos 🍽, shops 🛍 et night clubs 💃🍺. Toutes commodités à portée de main 🤗<br><br>
+  ‼️<strong>Campement Wolmar</strong> 🦌<br><br>
+  ⚠️<strong>Détails :</strong><br>
+  ✅️ <strong>6 chambres</strong> à coucher, dont 3 au rez-de-chaussée (idéal pour personnes âgées 👵🧓) et 3 au 1er étage 🛌<br>
+  ✅️ <strong>3 cuisines</strong> dont 1 au rooftop 👨‍🍳🍲<br>
+  ✅️ <strong>2 douches</strong> 🚿<br>
+  ✅️ <strong>3 toilettes</strong> 🚽 dont 1 au rooftop<br>
+  ✅️ Piscine privée 🏊‍♀️<br>
+  ✅️ Parking privé pour 3 voitures 🅿️🚘<br><br>
+  ⚠️<strong>Idéal pour :</strong><br>
+  Réserver vos week-ends 🔥 et vos vacances ✈️ en famille nombreuse 👨‍👩‍👧‍👧 pour des moments exclusifs 🥰 et inoubliables 😍 dès maintenant !`
+},
+
+      {
+  title: "Maison de plain-pied – Pointe aux Sables",
+  type: "sale",
+  location: "Pointe aux Sables",
+  image: "images/poto4.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/713124545104968/?rdid=1J26bIU3RsRg83aj#",
+  description: `🏠<strong>Real Estate Listing</strong>🏠<br>
+  ‼️<strong>Sale Offer</strong><br>
+  💰<strong>Prix de vente :</strong> Rs 7.5M (légèrement négociable)<br>
+  🏡<strong>Type :</strong> Maison de plain-pied<br>
+  📐<strong>Surface :</strong> Terrain de 10 perches<br><br>
+  📌<strong>Localisation :</strong> Pointe aux Sables, dans un quartier calme et paisible.<br><br>
+  ⚠️<strong>À proximité :</strong><br>
+  ✅️ À quelques minutes à pied de l’arrêt de bus 🚌<br>
+  ✅️ Supermarché à 5 minutes 🛒<br><br>
+  ⚠️<strong>Description du bien :</strong><br>
+  ✅️ <strong>Chambres :</strong> 3 chambres en enfilade, dont 1 au rez-de-chaussée (idéal PMR ♿️)<br>
+  ✅️ <strong>Espaces de vie :</strong> Grand séjour lumineux et aéré 🛋📺 + salle à manger 🍽<br>
+  ✅️ <strong>Commodités :</strong> Buanderie, terrasse, garage couvert 🚘<br><br>
+  ⚠️<strong>Extérieur :</strong><br>
+  ✅️ Très grande cour avec arbres fruitiers 🌳<br>
+  ✅️ Grand espace vert 🌿<br>
+  ✅️ <strong>Atout supplémentaire :</strong> Magnifique vue mer 👀🌊`
+},
+      {
+  "title": "Appartement de prestige à Flic en Flac",
+  "type": "Location Longue Durée",
+  "location": "Flic en Flac",
+  "description": "Découvrez ce bijou niché dans un quartier résidentiel sécurisé et exclusif, au sein d’une élégante villa comprenant seulement deux appartements.\n\n✨ Caractéristiques haut de gamme :\n- Piscine privée 🏊\n- 3 chambres climatisées dont une master suite 🛏️\n- 3 salles de bain raffinées + 3 toilettes 🚿🚽\n- Vaste séjour lumineux avec salle à manger 🛋️\n- Cuisine américaine spacieuse et entièrement équipée 🍷🍳\n- Terrasse/véranda privée offrant une vue panoramique imprenable sur l’océan 🌅\n\n📍 Un cadre idéal alliant confort, raffinement et tranquillité, à deux pas de la plage 🏖🌊 et des commodités 🛒🍽.",
+  "price": "Rs 55,000 / mois",
+  "image": "images/imo.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=729054683511954&id=100092222870205&rdid=sn3laYRjWoZSVSLK#"
+},
+
+      {
+  title: "Duplex – Flic en Flac (Résidence Carré d'Or 3)",
+  type: "sale",
+  location: "Flic en Flac",
+  image: "images/aki.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/709703905447032/?rdid=DWbpfnwgkoxYirOE#",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Offre de Vente</strong><br>
+  🏡<strong>Type :</strong> Duplex (Résidence Carré d'Or 3)<br>
+  📐<strong>Superficie :</strong> 94.65 m²<br><br>
+  📌<strong>Localisation :</strong> Flic en Flac, à proximité de la plage, restaurants et arrêts de bus.<br><br>
+  
+  ⚠️<strong>Description du bien :</strong><br>
+  ✅️ <strong>Rez-de-chaussée :</strong><br>
+  - Parking privé (2 voitures) 🅿️🚘<br>
+  - Grand séjour + salle à manger climatisée (22.35 m²) 🛋🍽<br>
+  - Cuisine ouverte sur le séjour (15 m²) 🍳<br>
+  - WC sous l’escalier (2.10 m²) 🚽<br><br>
+  
+  ✅️ <strong>1er étage :</strong><br>
+  - Chambre principale en suite (19 m²) avec balcon (4.80 m²) 🛌<br>
+  - 2 chambres à coucher (10.25 m² chacune) 🛏<br>
+  - Couloir (2.55 m²)<br>
+  - Salle de bain + WC (4 m²) 🛀🚽<br><br>
+  
+  ✅️ <strong>Extérieur :</strong><br>
+  - Terrasse rooftop (53 m²) avec vue imprenable sur la mer 🌊 et les montagnes ⛰️<br>
+  - Piscine privative 🏊‍♂️<br><br>
+  
+  ⚠️<strong>Points forts :</strong><br>
+  ✅️ Climatisation dans toutes les chambres et le salon ❄️<br>
+  ✅️ Terrasse rooftop idéale pour admirer les couchers de soleil 🌅<br>
+  ✅️ Résidence sécurisée et paisible 🔐<br>`
+},
+      {
+  "title": "Villa à Louer – Location Courte Durée (Beachfront)",
+  "type": "rent",
+  "location": "Trou aux Biches",
+  "image": "images/poo.jpg",
+  "facebookLink": "https://www.facebook.com/story.php?story_fbid=725756970508392&id=100092222870205&rdid=PNAoDoiyAHo2qkxD#",
+  "description": `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Villa à Louer Pieds dans l’eau (BEACHFRONT)</strong><br>
+  📌<strong>Localisation :</strong> Trou aux Biches, route côtière, à 30 secondes du supermarché Chez Popo 🛒<br>
+  ⌛<strong>Durée Minimum :</strong> 4 nuits 🌃<br>
+  👥<strong>Capacité Minimum :</strong> 6 personnes<br>
+  🏡<strong>Type :</strong> Villa individuelle de plain-pied – Beachfront<br><br>
+  
+  ⚠️<strong>Description :</strong><br>
+  Jolie villa moderne, située dans une résidence privée de seulement 2 villas. À proximité immédiate de toutes commodités (restaurants, bus, plage publique, boutiques, distributeurs).<br><br>
+  
+  ⚠️<strong>Équipements Extérieurs :</strong><br>
+  ✅️ Jardin avec vue imprenable sur l’océan Indien 🌊<br>
+  ✅️ Transats pour se détendre au soleil 🌞<br>
+  ✅️ Barbecue pour des moments conviviaux 🍗🔥<br>
+  ✅️ Piscine privée 🏊‍♂️<br>
+  ✅️ Parking privé 🚗<br><br>
+  
+  ⚠️<strong>Équipements Intérieurs :</strong><br>
+  ✅️ 3 chambres climatisées dont une suite parentale avec vue mer 🌊<br>
+  ✅️ Séjour spacieux et lumineux 🛋<br>
+  ✅️ Salle à manger conviviale 🍽<br>
+  ✅️ Cuisine haut de gamme équipée 👨‍🍳<br>
+  ✅️ 2 salles de bain avec toilettes 🚿<br><br>
+  
+  ⚠️<strong>Atouts :</strong><br>
+  ✅️ Vue panoramique sur l’océan Indien 👀🌅<br>
+  ✅️ Résidence privée sécurisée<br>
+  ✅️ Accès direct plage 🏖`
+},
+
+{
+  title: "Appartement spacieux et privatif – Pereybère",
+  type: "rental",
+  location: "Pereybere",
+  image: "images/aki1.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/703642696053153/?rdid=pEANViy7MQdf4pet#",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Location Longue Durée</strong><br>
+  💰<strong>Loyer :</strong> 30,000 Rs / mois<br>
+  🔹<strong>Inclus :</strong> Syndic et eau<br>
+  🔹<strong>Exclus :</strong> Internet et électricité<br><br>
+  
+  📌<strong>Localisation :</strong> Pereybère, au premier étage d’un immeuble résidentiel alliant confort et ambiance décontractée.<br><br>
+  
+  ⚠️<strong>Caractéristiques de l’appartement :</strong><br>
+  ✅️ <strong>Chambres :</strong> 2 chambres climatisées 🛌❄️<br>
+  ✅️ <strong>Salle de bain :</strong> 1 salle de bain moderne 🚿<br>
+  ✅️ <strong>Cuisine :</strong> Cuisine américaine ouverte sur séjour/salle à manger 🍳🍽<br>
+  ✅️ <strong>Terrasse :</strong> Belle terrasse couverte et discrète 🌿<br>
+  ✅️ <strong>Espace extérieur :</strong> Piscine commune 🏊‍♂️<br>
+  ✅️ <strong>Stationnement :</strong> Grand parking commun 🅿️<br>
+  ✅️ <strong>Sécurité :</strong> Gardiennage et caméras de surveillance 24/7 🔐<br><br>
+  
+  ⚠️<strong>À proximité :</strong><br>
+  ✅️ Arrêt de bus 🚌<br>
+  ✅️ Plage 🏖<br>
+  ✅️ Supermarché Winners 🛒<br>`
+},
+{
+  title: "Villa contemporaine et balinaise – Bain Boeuf",
+  type: "rental",
+  location: "Bain Boeuf",
+  image: "images/aki2.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/701395772944512/?rdid=sedzF6btqN6ehA0c#",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Location Longue Durée (1 an renouvelable)</strong><br><br>
+
+  📌<strong>Localisation :</strong> Bain Boeuf<br>
+  🐶🦮 Animaux acceptés ✅<br><br>
+
+  ⚠️<strong>Description :</strong><br>
+  Superbe villa de style contemporain et balinais, offrant un espace de vie spacieux et élégant sur deux étages. Située dans un quartier résidentiel paisible et discret, proche des plages et commerces.<br><br>
+
+  ⚠️<strong>Caractéristiques de la villa :</strong><br>
+  ✅️ <strong>Chambres :</strong> 5 chambres climatisées, dont 3 en suite avec salle de bain privative + 1 chambre au rez-de-chaussée 🛌<br>
+  ✅️ <strong>Salles de bain :</strong> 4 salles de bain au total 🛀🚽<br>
+  ✅️ <strong>Espace de vie :</strong> Grand séjour lumineux 🛋📺 + deuxième cuisine et buanderie 🍳🧺<br><br>
+
+  ⚠️<strong>Extérieur :</strong><br>
+  ✅️ Grande piscine privée 🏊‍♀️<br>
+  ✅️ Jardin aménagé avec plantes tropicales 🌴🌺<br><br>
+
+  ⚠️<strong>Parking :</strong><br>
+  ✅️ Parking privé pour 4 véhicules 🅿️🚘<br>`
+},
+{
+  title: "Grande villa moderne – Pereybère",
+  type: "rental",
+  location: "Pereybere",
+  image: "images/aki3.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/684850421265714/?rdid=a1lCjjOkZHLJVvGp#",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Location Longue Durée (1 an de bail renouvelable)</strong><br><br>
+
+  📌<strong>Emplacement :</strong> Pereybère (près du complexe Oasis)<br>
+  💰<strong>Loyer :</strong> Rs 85,000 / mois<br><br>
+
+  ⚠️<strong>Description :</strong><br>
+  Villa très spacieuse à louer sur 2 étages avec grand terrain privé. Située dans un quartier résidentiel paisible et recherché.<br><br>
+
+  ⚠️<strong>Caractéristiques :</strong><br>
+  ✅️ <strong>Chambres :</strong> 5 chambres climatisées, dont une suite parentale avec grande salle de bain + 2 chambres au rez-de-chaussée 🛌<br>
+  ✅️ <strong>Salles de bains :</strong> 3 salles de bain au total, dont une avec baignoire 🛀<br>
+  ✅️ <strong>Cuisine :</strong> Cuisine américaine ouverte sur un vaste séjour avec salle à manger 🍳🍽<br>
+  ✅️ <strong>Terrasses :</strong> 2 grandes terrasses + rooftop avec vues magnifiques 🌅<br>
+  ✅️ <strong>Stationnement :</strong> Carport pour 2 véhicules + plusieurs places de parking privées 🚘<br>
+  ✅️ <strong>Extérieur :</strong> Jardin verdoyant + piscine pour se détendre 🏊‍♀️🌴<br>`
+},
+      {
+  "title": "Appartement meublé à vendre à Péreybère – Résidence Savannah Sparrow",
+  "type": "sale",
+  "location": "Pereybere",
+  "description": "Bel appartement meublé situé au 2ᵉ étage, donnant directement sur la piscine.\n\n✨ Caractéristiques :\n- Superficie : 75 m²\n- 2 chambres climatisées 🛏️❄️\n- Salon + salle à manger 🛋️🍽️\n- Cuisine ouverte & équipée (climatisée) 👩‍🍳\n- Salle de bain + toilettes 🚿🚽\n- Terrasse 🌿\n- Parking pour 2 voitures 🚗🚗\n- Piscine commune 🏊‍♂️\n- Résidence sécurisée avec gardien 24/7 🔒\n\n📍 À seulement 3 minutes de la plage 🏖️, du supermarché Winners 🛒 et de toutes commodités (bus, commerces).",
+  "price": "Rs 5,500,000 (charges syndic Rs 2,000/mois)",
+  "image": "images/ai1.jpg",
+  "facebookLink": "https://www.facebook.com/share/p/1BRCsApDdA/"
+},
+
+{
+  title: "Terrain résidentiel – L’Espérance, Quartier Militaire",
+  type: "sale",
+  location: "Moka",
+  image: "images/aki4.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/675488858868537/?rdid=plD0eXfdJpfnzSfO#",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Offre de Vente</strong> : Terrain Résidentiel<br>
+  📐<strong>Superficie :</strong> 50 perches<br>
+  💰<strong>Prix de vente :</strong> Rs 11.5M (négociable)<br><br>
+  📌<strong>Localisation :</strong> L’Espérance, Quartier Militaire, Moka<br><br>
+  ⚠️<strong>Description :</strong><br>
+  ✅️ Terrain résidentiel entièrement clôturé avec chemin d’accès 🚧<br>
+  ✅️ Installation d’eau déjà existante 💧<br><br>
+  ⚠️<strong>Détails :</strong><br>
+  ✅️ Permis de construction déjà délivré par le District Council de Moka 🏗<br>
+  ✅️ Rare opportunité : plus de terrain disponible à la vente dans les zones voisines (L’Espérance, Quartier Militaire, Moka, Valetta, Dagotier)<br>
+  ✅️ Situation idéale proche de l’aéroport ✈️ et du centre 🏙<br><br>
+  <strong>Une opportunité unique pour investisseurs ou particuliers !</strong>`
+},
+{
+  title: "Appartement Rez-de-chaussée – Résidence Fleury sur Mer, Trou aux Biches",
+  type: "sale",
+  location: "Trou aux Biches",
+  image: "images/aki5.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/672118865872203/?rdid=NtJeBDRlkpnqC5Ge#",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Offre de Vente avec Retour d’Investissement Immédiat</strong><br>
+  🌟<strong>Occasion à ne pas manquer</strong>❗️<br><br>
+  📌 Appartement rez-de-chaussée dans la résidence <strong>Fleury sur Mer</strong> à <strong>Trou aux Biches</strong>.<br>
+  💰<strong>Prix de vente :</strong> Rs 7.5M<br><br>
+  📈<strong>Opportunité d’investissement :</strong><br>
+  ✅️ Loyer long-terme estimé : Rs 25,000 – 45,000/mois<br>
+  ✅️ Loyer court-terme estimé : Rs 60,000 – 150,000/mois<br><br>
+  ⚠️<strong>État :</strong> Très bon, propre et moderne.<br><br>
+  ⚠️<strong>Caractéristiques de la résidence :</strong><br>
+  ✅️ Résidence bien entretenue, sécurisée et verdoyante 🌴<br>
+  ✅️ À seulement 2 minutes à pied des plus belles plages 🏖🌊<br>
+  ✅️ Proche arrêts de bus 🚏, restaurants 🍽 et commerces 🛒<br><br>
+  ⚠️<strong>Détails de l’appartement :</strong><br>
+  ✅️ Surface habitable : 60 m²<br>
+  ✅️ Syndic : Rs 1200/mois<br>
+  ✅️ 2 chambres climatisées 🛌<br>
+  ✅️ 1 salle de bain + possibilité d’ajout dans la chambre parentale 🛁🚽<br>
+  ✅️ Cuisine américaine ouverte sur séjour/salle à manger 👨‍🍳<br>
+  ✅️ Terrasse privée 🌿<br>
+  ✅️ Buanderie<br>
+  ✅️ Parking privé + parkings additionnels 🚘<br><br>
+  ⚠️<strong>Services inclus :</strong><br>
+  ✅️ Piscine commune 🏊‍♀️<br>
+  ✅️ Double portail électrique + gardien 24/7 🔒<br>
+  ✅️ Grand jardin paysager 🌺<br>
+  ✅️ Cour commune spacieuse 🏡<br>
+  ✅️ Salle d’événements équipée + barbecue + terrain de pétanque 🎉<br>
+  ✅️ Parking spacieux 🚘<br><br>
+  <strong>Investissement clé en main dans une zone très recherchée !</strong>`
+},
+
+
+
+
+
+      {
+  title: "Duplex meublé en résidence touristique – Belle Mare",
+  type: "rent",
+  location: "Belle Mare",
+  image: "images/poto1.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/658890447195045/?rdid=7B0oiN31jncSJ3ch#",
+  description: `‼️<strong>Annonce Immobilière</strong>🏠<br>
+  ⌛️<strong>Location de Courte Terme / Campement à Belle Mare (#Flacq)</strong><br>
+  Découvrez ce duplex meublé et entièrement équipé, disponible à la location dans une magnifique résidence touristique beachfront 🏖🌊 offrant une grande piscine commune 🏊‍♂️👙🩲.<br><br>
+  ⚠️<strong>Détails de l'Offre :</strong><br>
+  ✅️ <strong>Durée Minimum de Séjour :</strong> À partir de 2 nuits<br>
+  ✅️ <strong>Type de Logement :</strong> Duplex meublé<br>
+  ✅️ <strong>Chambres :</strong> 3 chambres climatisées 🛌<br>
+  ✅️ <strong>Salles de Bains :</strong> 2 salles de bains et 2 toilettes 🚿🚾<br>
+  ✅️ <strong>Espace Extérieur :</strong> Terrasse/Véranda couverte avec vue mer 🌊👀<br>
+  ✅️ <strong>Pièces de Vie :</strong> Grand séjour + salle à manger 🛋🖥<br>
+  ✅️ <strong>Cuisine :</strong> Cuisine entièrement équipée 🍳<br>
+  ✅️ <strong>Stationnement :</strong> Place de parking privé couverte + parking disponible 🅿️🚘<br><br>
+  ⚠️<strong>Sécurité :</strong><br>
+  Résidence sécurisée avec agent présent 24h/24 et 7j/7, idéalement située juste en face de la plage publique. 🌊🏖`
+},
+{
+  title: "Villa contemporaine avec piscine – Grand Baie (Chemin 20 Pieds)",
+  type: "rent",
+  location: "Grand Baie",
+  image: "images/poto2.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/pfbid0t7urYERrAHRPP9tkG4WBL14udpmmEyAzPXU9VvfUdWaUQrqhQVgiXA9uT1GGcgUJl/?mibextid=Nif5oz",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ⌛️<strong>Location longue durée :</strong> Bail de 1 an renouvelable<br>
+  📌<strong>Emplacement :</strong> Grand Baie, Chemin 20 Pieds<br>
+  ⚠️<strong>Disponibilité :</strong> Septembre 2025<br><br>
+  ⚠️<strong>Description :</strong><br>
+  Villa contemporaine de plain-pied dans une résidence sécurisée comprenant uniquement 5 villas. Située dans un quartier paisible et moderne, proche des plages et commerces, idéale pour un mode de vie confortable et tranquille.<br><br>
+  ⚠️<strong>Caractéristiques :</strong><br>
+  ✅️ <strong>Chambres :</strong> 3 chambres climatisées, dont une suite parentale avec salle de bain privée et grand dressing 🛌<br>
+  ✅️ <strong>Salle de bain :</strong> 2 salles de bain au total 🚿<br>
+  ✅️ <strong>Cuisine :</strong> Cuisine américaine ouverte sur un spacieux séjour/salle à manger 🍴<br>
+  ✅️ <strong>Extérieur :</strong> Terrasse couverte avec stores électriques rétractables + grand jardin entretenu 🌳<br>
+  ✅️ <strong>Loisirs :</strong> Piscine privative, kiosque et espace lounge 🏊‍♂️<br>
+  ✅️ <strong>Stationnement :</strong> Parking privé pour 2 véhicules 🚘<br>
+  ✅️ <strong>Sécurité :</strong> Double portail électrique + système d'alarme 🔒`
+},
+{
+  title: "Appartement RDC – Résidence Fleury sur Mer, Trou aux Biches",
+  type: "sale",
+  location: "Trou aux Biches",
+  image: "images/poto3.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/672118865872203/?rdid=pDZrTCNNvPtnAWvi#",
+  description: `🏠<strong>Annonce Immobilière</strong>🏠<br>
+  ‼️<strong>Offre de vente avec retour d'investissement immédiat</strong> ‼️<br>
+  📌<strong>Appartement rez-de-chaussée</strong> dans la résidence <strong>Fleury sur Mer</strong>, Trou aux Biches.<br>
+  💰<strong>Prix de vente :</strong> 7.5M Rs<br><br>
+  ⚠️<strong>Opportunité d'investissement :</strong><br>
+  🔹 Estimation retour sur investissement : 25,000 – 45,000 Rs/mois (location long-terme) ou 60,000 – 150,000 Rs/mois (location court-terme).<br><br>
+  ⚠️<strong>État :</strong> Très bon, propre et moderne.<br><br>
+  ⚠️<strong>Caractéristiques de la résidence :</strong><br>
+  ✅️ Résidence sécurisée, entretenue et verdoyante 🌿<br>
+  ✅️ À 2 minutes à pied des plages 🏖, bus 🚍, restaurants 🍽 et commerces 🛒<br><br>
+  ⚠️<strong>Détails de l'appartement :</strong><br>
+  ✅️ Surface : ~60 m²<br>
+  ✅️ Syndic : 1200 Rs/mois<br>
+  ✅️ 2 chambres climatisées 🛌<br>
+  ✅️ 1 salle de bain (possibilité d’une 2ème dans la chambre parentale) 🛁<br>
+  ✅️ Buanderie<br>
+  ✅️ Cuisine américaine ouverte sur séjour/salle à manger 🍳<br>
+  ✅️ Terrasse privée 🌅<br>
+  ✅️ 1 parking privé + parkings additionnels 🅿️<br><br>
+  ⚠️<strong>Services inclus :</strong><br>
+  ✅️ Jardin paysager tropical 🌴<br>
+  ✅️ Grand parking en face de l’appartement 🚘<br>
+  ✅️ Double portail électrique + gardien 24/7 🔒<br>
+  ✅️ Grande piscine commune 🏊‍♀️<br>
+  ✅️ Cour commune spacieuse<br>
+  ✅️ Barbecue + terrain de pétanque<br>
+  ✅️ Salle d’événements équipée (cuisine, toilettes, tables, sofas, machines de sport) 🎉`
+},
+      {
+        title: "Villa à étage – Tamarin",
+        type: "sale",
+        location: "Tamarin",
+        image: "images/property4.jpg",
+        facebookLink: "https://www.facebook.com/share/p/19Jxz38whX/",
+        description: `‼️ <strong>𝗢𝗳𝗳𝗿𝗲 𝗱𝗲 𝗩𝗲𝗻𝘁𝗲</strong><br>
+        📌 <strong>𝗟𝗼𝗰𝗮𝗹𝗶𝘀𝗮𝘁𝗶𝗼𝗻</strong> : Tamarin<br>
+        🏡 <strong>𝗩𝗶𝗹𝗹𝗮 𝗮̀ 𝗲́𝘁𝗮𝗴𝗲</strong> meublée & équipée<br>
+        🌿 <strong>Terrain</strong> : 7.5 perches<br><br>
+        <strong>Description :</strong><br>
+        Nichée à l'arrière de la route côtière, dans un quartier résidentiel paisible et prisé.<br><br>
+        ✅ 3 terrasses (vue mer)<br>
+        ✅ Spacieuse cour avec jardin tropical & bassin à poissons ⛲️<br>
+        ✅ Véranda extérieure avec coin barbecue<br>
+        ✅ Piscine 🏊‍♀️<br>
+        ✅ Allée parking pour 3 voitures 🅿️<br><br>
+        <strong>À l'intérieur :</strong><br>
+        ✅ Séjour ouvert sur piscine<br>
+        ✅ Cuisine américaine<br>
+        ✅ Coin buanderie<br>
+        ✅ Espace rangement<br>
+        ✅ 3 chambres climatisées dont 1 suite parentale avec dressing 🛌`
+      },
+      {
+        title: "Terrain + Bâtiment R+2 - Calodyne",
+        type: "sale",
+        location: "Calodyne",
+        image: "images/property2.jpg",
+        facebookLink: "https://www.facebook.com/yourpage/posts/album3",
+        description: `‼️ <strong>𝐎𝐅𝐅𝐑𝐄 𝐃𝐄 𝐕𝐄𝐍𝐓𝐄 🤑</strong><br>
+        <strong>𝐏𝐑𝐈𝐗:</strong> Rs 5.5 millions ‼️<br>
+        🌳 <strong>𝐒𝐔𝐏𝐄𝐑𝐅𝐈𝐂𝐈𝐄:</strong> Terrain de 15 perches<br>
+        📍 <strong>𝐙𝐎𝐍𝐄:</strong> Nord Side, Coastal Road, 3 min de la plage Ansay La Rey<br>
+        <strong>Description du projet:</strong> Bâtiment en bloc construit sous pilotis pour un projet R+2 sur terrain 657m² à usage d'habitation.<br>
+        <strong>Date de construction:</strong> 2018<br>
+        <strong>Documents:</strong> Permis de construction obtenu en 2018 par le conseil de district de Rivière du Rempart<br>
+        <strong>Adresse:</strong> Mon Choisy, Cap Malheureux, route B13, Saint-François, Groupe Morcellement.`
+      },
+      {
+        title: "Appartement 3 chambres pieds dans l'eau - Location Longue Durée - Pointe aux Canonniers",
+        type: "rent",
+        location: "Pointe aux Canonniers",
+        image: "images/property14.jpg",
+        facebookLink: "https://www.facebook.com/share/1733C8KEYD/",
+        description: `🏠 <strong>Annonce Immobilière</strong> 🏠<br>
+        ‼️ <strong>Location Longue Durée</strong> - 1 an renouvelable<br>
+        ❌️ <strong>Animaux :</strong> Non acceptés<br><br>
+        📍 <strong>Emplacement :</strong> Pieds dans l'eau à <strong>Pointe aux Canonniers</strong>, Route côtière, dans une résidence privée, chic et sécurisée avec seulement 3 villas et 2 appartements. Quartier très calme et proche de toutes commodités.<br><br>
+        ⚠️ <strong>Type de logement :</strong> Appartement contemporain, entièrement meublé et équipé<br>
+        ✅ <strong>Surface :</strong> 180 m²<br><br>
+        ⚠️ <strong>Description de l'appartement :</strong><br>
+        ✅ 3 chambres climatisées, dont 2 en suite 🛌<br>
+        ✅ 1 salle de bain moderne + toilettes séparées 🛁🚽<br>
+        ✅ Très grand séjour spacieux ouvert sur la terrasse 🛋<br>
+        ✅ Salle à manger intégrée dans l'espace de vie 🍽<br>
+        ✅ Cuisine séparée, haut de gamme et totalement équipée 👩‍🍳<br>
+        ✅ Très grande terrasse avec salon véranda couvert<br>
+        ✅ Parking pour 2 voitures 🅿️🚘<br>
+        ✅ Grande cour extérieure<br>
+        ✅ Sortie de secours arrière reliant la cuisine au parking<br><br>
+        ⚠️ <strong>Avantages :</strong><br>
+        ✅ Accès direct à la plage 🏖<br>
+        ✅ Baignade dans la mer à quelques pas 🏊‍♀️🌊<br>
+        ✅ Détente sur le sable blanc juste devant chez vous`
+      },
+      {
+  title: "Duplex 3 chambres avec piscine privée - Location Longue Durée - Trou aux Biches",
+  type: "rent",
+  location: "Trou aux Biches",
+  image: "images/property15.jpg",
+  facebookLink: "https://www.facebook.com/share/1CaLwpY78V/",
+  description: `🏠 <strong>Annonce Immobilière</strong> 🏠<br>
+    ‼ <strong>Pré-Marketing - Location Longue Durée</strong><br>
+    ⌛ <strong>Durée du bail :</strong> 1 an renouvelable<br>
+    📍 <strong>Localisation :</strong> Morcellement Jhuboo, Trou aux Biches<br><br>
+
+    ⚠ <strong>Type de bien :</strong> Duplex individuel<br>
+    ✅ <strong>Année de construction :</strong> 2025<br>
+    ✅ <strong>État :</strong> Neuf, jamais habité, entièrement meublé et équipé<br><br>
+
+    ⚠ <strong>Description du bien :</strong><br>
+    ✅ 3 chambres dont 1 au rez-de-chaussée 🛌<br>
+    ✅ 3 salles de bain (1 par chambre) 🚿🚽<br>
+    ✅ Piscine privée 🏊‍♀👙🩲<br><br>
+
+    ⚠ <strong>Avantages :</strong><br>
+    ✅ Situé dans un quartier prisé du nord de l'île<br>
+    ✅ Environnement paisible et sain, à proximité de toutes commodités 🤗<br><br>
+
+    ⚠ <strong>Détails des espaces :</strong><br>
+    <u>Extérieur :</u><br>
+    ✅ Espace vert<br>
+    ✅ Cour<br>
+    ✅ Parking 🅿🚘<br><br>
+
+    <u>Rez-de-chaussée :</u><br>
+    ✅ Séjour + salle à manger 🛋🍽<br>
+    ✅ Cuisine ouverte<br>
+    ✅ 1 chambre à coucher 🛌<br>
+    ✅ Douche + toilettes 🚿🚽<br><br>
+
+    <u>1er étage :</u><br>
+    ✅ Espace séjour enfant 📺🚸🧒<br>
+    ✅ 2 chambres en suite 🛌<br><br>
+
+    <u>2ème étage :</u><br>
+    ✅ Grande terrasse sur le toit 🌤`
+},
+{
+  title: "Appartement 2 chambres vue mer – Résidence Maghrib Sunset – Albion",
+  type: "rent",
+  location: "Albion",
+  image: "images/property16.jpg",
+  facebookLink: "https://www.facebook.com/share/1AmNk3qmye/",
+  description: `📌 <strong>Résidence Maghrib Sunset 🌅 – Albion</strong><br>
+    ⌛ <strong>Location :</strong> Court, moyen et long terme<br>
+    🏡 Bienvenue à la résidence Maghrib Sunset, idéalement située à 5 min du phare et de la piscine naturelle, dans le morcellement Belle Vue, Albion 🚍⛱<br><br>
+
+    ✅ <strong>Immeuble :</strong> Vue mer 🌊, 4 étages, récemment construit 🏢<br>
+    ✅ <strong>Appartements :</strong> 3 unités de 2 chambres climatisées chacune<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 1 au rez-de-chaussée (accessible aux personnes à mobilité réduite)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 1 penthouse au 3ᵉ étage<br>
+    ✅ Entièrement meublé et équipé : venez avec vos valises 🎒<br><br>
+
+    ⚠ <strong>Description – Appartement 2ᵉ étage :</strong><br>
+    ✅ <strong>Surface :</strong> 132 m² habitables<br>
+    ✅ 2 chambres climatisées avec balcon/veranda vue mer et piscine 🛌🌊<br>
+    ✅ Séjour spacieux + grande salle à manger 🛋🍽<br>
+    ✅ Cuisine ouverte<br>
+    ✅ Coin buanderie + douche et toilettes séparées 🚿<br><br>
+
+    ⚠ <strong>Espaces communs :</strong><br>
+    ✅ Grande terrasse rooftop avec vue panoramique sur l’océan, le Morne et le phare 🌅⛰<br>
+    ✅ Piscine commune (disponible fin novembre) 🏊‍♂<br>
+    ✅ Parking privé (10+ voitures) 🅿<br>
+    ✅ Cour avec jardin gazonné 🌿<br><br>
+
+    ⚠ <strong>Services inclus :</strong><br>
+    ✅ Charges payées par le propriétaire (CEB, CWA, gaz, internet)<br>
+    ✅ Entretien de la cour<br>
+    ✅ Serviettes de bain et plage fournies 🧼<br>
+    ✅ 1 vélo par appartement 🚴<br><br>
+
+    ⚠ <strong>Options supplémentaires :</strong><br>
+    ✅ Location de voiture 🚗<br>
+    ✅ Navette aéroport disponible 🚎✈<br>
+    ✅ Service traiteur/pension alimentaire possible 👩‍🍳🍜 (en supplément)<br><br>
+
+    ⚠ <strong>Capacité :</strong> 4 adultes + enfants 👨‍👩‍👧‍👦`
+},
+{
+  title: "Appartement 2 chambres - Vente - Port Louis (La Capitale)",
+  type: "sale",
+  location: "Port Louis",
+  image: "images/property9.jpg",
+  facebookLink: "https://www.facebook.com/share/1M5v9iHbX7/",
+  description: `‼ <strong>Offre de Vente</strong> : Aussi accessible aux investisseurs étrangers<br>
+    <strong>Localisation :</strong> #PortLouis (la capitale)<br>
+    <strong>Appartement complètement meublé</strong><br>
+    <strong>Superficie :</strong> 103 m² ‼<br><br>
+
+    ⚠ <strong>Type de Bien :</strong><br>
+    Appartement au 3ème étage offrant une magnifique vue 👀 sur la capitale, #PortLouis, le port 🛳⚓, l'océan 🌊 et les montagnes ⛰.<br>
+    Situé à proximité de toutes commodités : restaurants 🍴, arrêts de bus 🚏🚍, commerces 🛒 à pied 🚶‍♀🚶.<br><br>
+
+    ⚠ <strong>Immeuble :</strong><br>
+    🏢 Résidentiel R+4 comprenant 3 appartements, 1 studio et une terrasse sur le toit offrant une vue imprenable.<br>
+    L'immeuble dispose de :<br>
+    ✅ Parking privé sous pilotis disponible pour chaque appartement<br>
+    ✅ Très sécurisé<br>
+    ✅ Système d'alarme général<br>
+    ✅ Portail central motorisé avec ouverture par télécommande à distance<br>
+    ✅ Caméra de surveillance 24/7<br>
+    ✅ Frais syndic Rs 500 roupies seulement<br>
+    ✅ Date de construction : 2015<br><br>
+
+    🌊 <strong>Potentiel de Retour sur Investissement :</strong><br>
+    Cet appartement est une opportunité exceptionnelle avec retour sur investissement immédiat.<br>
+    Réputé sur <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer">Booking.com</a> avec de bons avis, actuellement loué en court terme à 100 euros la nuitée, assurant un taux de rentabilité supérieur à la moyenne.<br>
+    Situé à quelques minutes du nord, en pleine capitale, c’est une véritable occasion d’investissement. 🤩<br><br>
+
+    ⚠ <strong>Caractéristiques Supplémentaires :</strong><br>
+    ✅ Réserve d'eau de 1000L<br>
+    ✅ Budget récemment annoncé sur l'augmentation de la LAND TRANSFER TAX de 5 à 10% (non encore en vigueur), offrant un moment privilégié pour les acheteurs étrangers avant le vote parlementaire. 🏃🏽🏃‍♀<br><br>
+
+    ⚠ <strong>Description de l'Appartement :</strong><br>
+    ✅ Style moderne et cosy récemment rénové<br>
+    ✅ Entièrement meublé et équipé (voir photos 📸)<br>
+    ✅ Séjour lumineux avec cuisine ouverte<br>
+    ✅ Terrasse / Balcon<br>
+    ✅ 2 chambres (dont une suite parentale)<br>
+    ✅ Toutes les chambres climatisées avec balcons offrant une belle vue sur la capitale<br>
+    ✅ 2 salles de bains et toilettes<br>
+    ✅ Boîte à clé murale<br><br>
+
+    <strong>C'est une occasion à ne pas manquer pour ceux qui recherchent un investissement rentable dans un emplacement de choix.</strong>`
+},
+      {
+  title: "Modern 3-Bedroom Apartment – Short Term Rental – Pereybere",
+  type: "rent",
+  location: "Pereybere",
+  image: "images/alain1.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/719959987754757/?rdid=9KX8ozIt50qltl9h#",
+  description: `🏠 <strong>REAL ESTATE LISTING</strong> 🏠<br>
+  ‼️ <strong>SHORT TERM RENTAL / OVERNIGHTS / HOLIDAYS / WEEKENDS</strong> 👨👩👧👦<br>
+  📍 <strong>Location :</strong> Pereybere<br><br>
+  
+  Bienvenue dans votre retraite moderne de 3 chambres au sein d'une résidence privée.<br>
+  Profitez d'un séjour mémorable, à seulement 15 min à pied (900 m) de la magnifique plage de Pereybere.<br>
+  Cet appartement est idéal pour les familles ou amis, pouvant accueillir confortablement jusqu'à <strong>5 personnes</strong>.<br><br>
+
+  ⚠️ <strong>Features :</strong><br>
+  ✅️ <strong>Rooms :</strong> 3, dont une chambre attenante au 2ᵉ étage pour plus d'intimité.<br>
+  ✅️ <strong>Hosting Capacity :</strong> Jusqu'à 5 personnes.<br>
+  ✅️ <strong>Facilities :</strong> Espace entièrement équipé, piscine commune, parking privé.<br>
+  ✅️ <strong>Environment :</strong> Cadre paisible, proche des commerces, restaurants et du lagon.<br><br>
+
+  ⚠️ <strong>Additional Services :</strong><br>
+  ✅️ Prise en charge à l'aéroport ✈️🧳<br>
+  ✅️ Location de voiture 🚘<br><br>
+
+  Venez profiter 🏃🏽🏃‍♀️ d'un séjour relaxant, alliant confort et commodités dans un cadre idyllique.`
+},
+{
+  title: "Detached Villa 3 Bedrooms – Long Term Rental – Calodyne",
+  type: "rent",
+  location: "Calodyne",
+  image: "images/alain2.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/720376357713120/?rdid=PDEhxiFmV43X6Hpl#",
+  description: `🏠 <strong>Real Estate Announcement: Long Term Rental</strong> 🏠<br>
+  ‼️ <strong>Location :</strong> #Callodyne, à 1 minute à pied du supermarché Intermart 🛒<br>
+  💰 <strong>Rent :</strong> Rs 75,000 / mois<br>
+  ⌛ <strong>Duration :</strong> One year contract, renewable<br><br>
+
+  Découvrez cette charmante villa individuelle, construite l'année dernière, située dans un quartier paisible de 📌 #Callodyne. 
+  Cette propriété est idéalement située à moins de 5 minutes de la plage 🌊🏖, à seulement une minute à pied 🚶🏽‍♂️🚶‍♀️ du supermarché Intermart 🛒, de l'arrêt de bus et de la station-service Indian Oil.<br><br>
+
+  ⚠️ <strong>Villa Features :</strong><br>
+  ✅️ <strong>Rooms :</strong> 3 chambres climatisées 🛌 toutes en suite 🛁 (dont une au rez-de-chaussée avec accès direct à la piscine)<br>
+  ✅️ <strong>Bathrooms :</strong> 3 salles de bains (2 jacuzzi) et 4 toilettes 🛁<br>
+  ✅️ <strong>Living spaces :</strong> Séjour spacieux 🛋🖥 + salle à manger 🍽<br>
+  ✅️ <strong>Kitchen :</strong> Cuisine entièrement équipée 🍳👩🍳<br>
+  ✅️ <strong>Laundry :</strong> Espace buanderie<br>
+  ✅️ <strong>Parking :</strong> 2 places 🅿️🚘<br>
+  ✅️ <strong>Exterior :</strong> Grand jardin, cour et piscine privée 🏊‍♀️<br>
+  ✅️ <strong>Security :</strong> Caméras CCTV et barrières électriques<br>
+  ✅️ <strong>Connectivity :</strong> WiFi Internet inclus`
+},
+{
+  title: "Villa 4 Chambres avec Piscine Privée – Court Terme – Pereybere",
+  type: "rent",
+  location: "Pereybere",
+  image: "images/alain3.jpg",
+  facebookLink: "https://www.facebook.com/100092222870205/posts/718166054600817/?rdid=mezauALYGnToqNp8#",
+  description: `🏠 <strong>ANNONCE IMMOBILIÈRE</strong> 🏠<br>
+  ‼️ <strong>LOCATION COURTE DURÉE / WEEK-END / VACANCES</strong> 👨‍👩‍👧‍👦✈️🧳🔥<br>
+  🌴 <strong>À Louer :</strong> Villa Individuelle avec Piscine Privée 🏊‍♂️👙🩲 – Idéale pour Week-end / Vacances 🌴<br>
+  📌 #Pereybere<br><br>
+
+  🔴 <strong>Caractéristiques de la Villa :</strong><br>
+  ✅️ <strong>Chambres :</strong> 4 chambres spacieuses, toutes en suite, dont une au rez-de-chaussée.<br>
+  ✅️ <strong>Salle de Bain :</strong> 4 douches et 4 toilettes pour un confort optimal.<br>
+  ✅️ <strong>Climatisation :</strong> Toutes les chambres climatisées, ainsi que le salon et la salle à manger.<br>
+  ✅️ <strong>Piscine Privée :</strong> Profitez de votre propre oasis pour les journées ensoleillées.<br>
+  ✅️ <strong>Meublée et Équipée :</strong> Tout le nécessaire pour un séjour confortable, Wi-Fi et Internet inclus.<br><br>
+
+  🔴 <strong>Emplacement Idéal :</strong><br>
+  📍 À seulement 5 minutes de Winners Supermarché 🛒 et de la plage publique de #Pereybere 🌊🏖, avec accès facile à toutes commodités.<br><br>
+
+  🔴 <strong>Autres Avantages :</strong><br>
+  ✅️ Espace parking disponible 🅿️🚘<br>
+  ✅️ À proximité de toutes commodités : restaurants, boutiques, activités nautiques…<br><br>
+
+  ⚠️ <strong>Réservez Maintenant ❗️</strong> 🏃🏽🏃‍♀️<br>
+  Ne manquez pas cette opportunité de louer cette villa de rêve 😇 pour votre prochain week-end ou vacances ✈️🧳. Contactez-nous dès aujourd'hui pour plus d'informations ℹ️ et vérifier la disponibilité ❗️🤗`
+},
+{
+  title: "Villa 3 Chambres avec Piscine Privée – Court Terme – Perybere",
+  type: "rent",
+  location: "Pereybere",
+  image: "images/alain4.jpg",
+  facebookLink: "https://www.facebook.com/story.php?story_fbid=716507464766676&id=100092222870205&rdid=qRroLFKn6lkAZFff#",
+  description: `🏠 <strong>Rental Announcement: Individual Camping with Private Pool</strong> 🏊‍♂️👙🩲<br>
+  ‼️ <strong>Type of Rental :</strong> Short term / Seasonal ✈️🧳 / Weekend 🔥 / Family 👨👩👧👦<br>
+  📌 Perybere Oasis<br><br>
+
+  🔴 <strong>Description :</strong><br>
+  Profitez d'un séjour inoubliable dans notre magnifique villa individuelle, idéalement située à seulement 5 minutes de Winners 🛒 et de la plage de #Perybere 🏖🌊.<br><br>
+
+  🔴 <strong>Villa Features :</strong><br>
+  ✅️ <strong>Rooms :</strong> 3 chambres spacieuses, toutes avec salles de bains privatives 🛌🛁<br>
+  ✅️ <strong>Living Spaces :</strong> Grand séjour, salle à manger conviviale et cuisine entièrement équipée.<br>
+  ✅️ <strong>Outdoor :</strong> Piscine privée, jardin calme pour se détendre et espaces verts 🏊‍♂️👙<br>
+  ✅️ <strong>Parking :</strong> Parking disponible, y compris place privée 🅿️<br><br>
+
+  🔴 <strong>Environment :</strong><br>
+  Située dans un quartier calme, cette villa 🏠 est parfaite 👌 pour les familles 👨👩👧👦, couples 👫💑 ou groupes d'amis 👬👭 recherchant un week-end relaxant.`
+},
+{
+  title: "Location Court Terme - Studio à Grand Baie",
+  type: "rent",
+  location: "Grand Baie",
+  image: "images/property10.jpg",
+  facebookLink: "https://www.facebook.com/share/1784KKwYSz/",
+  description: `🏠 <strong>Annonce Immobilière - Location Court Durée à #GrandBaie</strong> 🏠<br>
+    ‼ <strong>Localisation📌 :</strong> #GrandBaie, au cœur du centre-ville ❤, idéalement situé à quelques secondes de marche 🚶 de #SuperU, 🛒 de la #plagepublique, 🏖🌊 des #arrêtsdebus, 🚍🚏 de #McDonald's, 🍗🍟 ainsi que des #boutiques, 🛍 #restaurants, 🍽 #banques 💳🏦 et autres commerces.‼<br><br>
+    
+    ⚠ <strong>Détails du Studio :</strong><br>
+    ✅ - <strong>Emplacement :</strong> 1er étage d'un immeuble sur la route royale.<br>
+    ✅ - <strong>Équipements :</strong> Studio totalement équipé et meublé.<br>
+    ✅ - <strong>Confort :</strong><br>
+      &nbsp;&nbsp;&nbsp;✅ Terrasse privée<br>
+      &nbsp;&nbsp;&nbsp;✅ Salon climatisé<br>
+      &nbsp;&nbsp;&nbsp;✅ Chambre climatisée<br>
+      &nbsp;&nbsp;&nbsp;✅ Salle de bain avec toilettes<br>
+      &nbsp;&nbsp;&nbsp;✅ Cuisine américaine<br><br>
+    
+    ⚠ <strong>Conditions :</strong> Location par nuitée, à partir de 5 nuits 🌃`
+},
+{
+  title: "Appartement 2 chambres - Location Longue Durée - Grand Baie",
+  type: "rent",
+  location: "Grand Baie",
+  image: "images/property12.jpg",
+  facebookLink: "https://www.facebook.com/share/16AV5ZXted/",
+  description: `🏠 <strong>Annonce immobilière : Appartement à louer</strong> 🏠<br>
+    ‼ <strong>Location longue durée :</strong> 1 an de bail renouvelable ⌛<br>
+    <strong>Loyer mensuel :</strong> Rs 40k/mois<br>
+    <strong>Emplacement :</strong> #GrandBaie, Kapokaye (proche de Pointe aux Canonniers) ‼<br><br>
+
+    Découvrez cet appartement 🏠 moderne à louer dans un complexe résidentiel sécurisé avec agent de sécurité disponible 24h/24 et 7j/7. Profitez d'un cadre paisible et sécurisé, à proximité de toutes les commodités et à seulement 2 minutes à pied de la mer. 🌊<br><br>
+
+    ⚠ <strong>Caractéristiques de l'appartement :</strong><br>
+    ✅ Situé au 1er étage<br>
+    ✅ Entièrement meublé et équipé<br>
+    ✅ 2 chambres climatisées (dont une avec terrasse/balcon)<br>
+    ✅ Salon spacieux avec accès au balcon<br>
+    ✅ Cuisine américaine<br>
+    ✅ Salle de bain et toilettes<br>
+    ✅ Terrasse/balcon couvert<br><br>
+
+    ⚠ <strong>Services et commodités :</strong><br>
+    ✅ Espace de parking disponible 🅿🚘<br>
+    ✅ Piscine commune 🏊‍♂👙🩲<br>
+    ✅ Wi-Fi / Internet inclus`
+},
+{
+  title: "Villa 3 chambres - Location Longue Durée - Grand Baie (près de Super U)",
+  type: "rent",
+  location: "Grand Baie",
+  image: "images/property13.jpg",
+  facebookLink: "https://www.facebook.com/share/16RJsQouWJ/",
+  description: `🏡 <strong>Villa Individuelle Meublée & Équipée</strong> 🏡<br>
+    ‼ <strong>Location Longue Durée</strong> - Minimum 1 an<br>
+    <strong>Loyer Mensuel :</strong> Rs 66,000 / mois<br>
+    📍 <strong>Emplacement :</strong> Grand Baie, à 2 min de Super U et de la plage publique 🌴🏖<br><br>
+
+    ⚠ <strong>Style :</strong> Moderne avec une touche balinaise<br>
+    ✅ <strong>Surface :</strong> Villa indépendante avec jardin et piscine privée<br><br>
+
+    ⚠ <strong>Description :</strong><br>
+    ✅ Rez-de-chaussée :<br>
+    - Parking privé 🅿<br>
+    - Jardin et piscine 🏊‍♂<br>
+    - Véranda ombragée<br>
+    - Grand séjour climatisé avec salle à manger, vue piscine 🛋❄<br>
+    - Cuisine américaine entièrement équipée (avec lave-vaisselle) 👨‍🍳<br>
+    - Espace buanderie 🧺<br>
+    - Salle de bain + WC 🚿🚽<br>
+    - 1 chambre climatisée avec vue piscine 🛏<br><br>
+
+    ✅ 1er étage :<br>
+    - 2 chambres en suite (dont une master avec dressing) 🛏🛁<br>
+    - Balcon avec vue piscine 🏞<br><br>
+
+    🔐 <strong>Sécurité :</strong><br>
+    - Volets roulants électriques<br>
+    - Système d’alarme Brinks 🚨<br>
+    - Clôture électrique ⚡<br>
+    - Portail motorisé et accès par digicode 🔐<br><br>
+
+    📶 <strong>Internet :</strong> Inclus, Wi-Fi installé<br><br>
+
+    👨‍👩‍👧‍👦 <strong>Idéal pour :</strong> Famille ou personne recherchant sécurité, confort et calme.`
+},
+{
+  title: "2BR Duplex - Trou aux Biches",
+  type: "rent",
+  location: "Trou aux Biches",
+  image: "images/property1.jpg",
+  facebookLink: "https://www.facebook.com/share/p/16ANPxCGGL/",
+  description: `‼ *For rent: Furnished duplex in*
+📌 #𝗧𝗿𝗼𝘂𝗮𝘂𝘅𝗕𝗶𝗰𝗵𝗲𝘀
+⌛ Rental period: 1 year (renewable lease)
+- Monthly rent: Rs 23,000
+✅ Pets accepted 🐶🐕
+📌 *Location*: Quiet area, only 3 min walk 🚶‍♀ from sea 🌊 and bus stops. 4 min drive 🚘 to Popo's 🛒.
+*Property Features:*
+✅ 2 air-conditioned bedrooms 🛌
+✅ Kitchen open to living room 🛋
+✅ Spacious living room 👩🍳
+✅ 2 water points & 1 toilet
+✅ A bathroom 🚿
+✅ Backyard with private garden
+✅ Private covered garage 🅿🚗
+✅ Private terrace`
+},
+{
+  title: "Location Longue Durée – Fond du Sac",
+  type: "rent",
+  location: "Fond Du Sac",
+  image: "images/property7.jpg",
+  facebookLink: "https://www.facebook.com/share/1JqEMpNBxC/",
+  description: `‼ <strong>𝗟𝗼𝗰𝗮𝘁𝗶𝗼𝗻 𝗟𝗼𝗻𝗴𝘂𝗲 𝗗𝘂𝗿𝗲́𝗲</strong><br>
+  💰 <strong>𝗟𝗼𝘆𝗲𝗿 :</strong> Rs 45,000<br>
+  📍 <strong>𝗟𝗼𝗰𝗮𝗹𝗶𝘀𝗮𝘁𝗶𝗼𝗻 :</strong> Fond du Sac, au nord, à 10 minutes en voiture 🚗 de l'école 🏫 du nord ⬆ et de la Croisette 🛒<br>
+  🏡 <strong>𝗧𝘆𝗽𝗲 𝗱𝗲 𝗯𝗶𝗲𝗻 :</strong> Très grande villa individuelle récemment construite avec piscine privée<br><br>
+  <strong>Description du bien :</strong><br>
+  Découvrez cette villa idéale à louer dans un quartier tranquille et sécurisé, offrant une intimité totale grâce à l'absence de vis-à-vis. Profitez de baignades relaxantes dans votre piscine en toute discrétion.<br><br>
+  ⚠ <strong>Caractéristiques :</strong><br>
+  🛌 <strong>Chambres :</strong><br>
+  ✅ 4 chambres au total<br>
+  ✅ 1 chambre au rez-de-chaussée<br>
+  ✅ Suite parentale avec salle de bains attenante<br><br>
+  ⚠ <strong>Rez-de-chaussée :</strong><br>
+  ✅ Salon et salle à manger spacieux<br>
+  ✅ Cuisine ouverte avec mini bar<br>
+  ✅ Chambre adaptée aux personnes à mobilité réduite (ou bureau)<br>
+  ✅ Salle de bain + toilettes avec jacuzzi 🛁<br>
+  ✅ Coin buanderie<br><br>
+  ⚠ <strong>Étage :</strong><br>
+  ✅ 3 chambres à l'étage dont 1 avec salle de bain attenante<br>
+  ✅ 2 chambres avec balcon/terrasse<br><br>
+  ⚠ <strong>Extérieur :</strong><br>
+  ✅ Très grande cour bien entretenue<br>
+  ✅ Piscine privée 🏊‍♂<br>
+  ✅ Espace parking pour plus de 6 voitures 🅿<br>
+  ✅ Caméras de surveillance 🎥<br>
+  ✅ Portail motorisé avec télécommande 🔐<br><br>
+  ⚠ <strong>Conditions :</strong><br>
+  - Location pour 1 an, bail renouvelable.`
+},
+      {
+        title: "Villa 3 chambres - Calodyne",
+        type: "rent",
+        location: "Calodyne",
+        image: "images/property66.jpg",
+        facebookLink: "https://www.facebook.com/100092222870205/posts/720376357713120/?rdid=SvUEQxdrUAxMaDS1#",
+        description: `🏠 <strong>Annonce Immobilière : Location Longue Durée</strong> 🏠<br>
+        ‼️ <strong>Emplacement :</strong> #Calodyne, à 1 minute à pied du supermarché Intermart 🛒<br>
+        💰 <strong>Loyer :</strong> Rs 75,000 par mois<br>
+        ⌛ <strong>Durée :</strong> Contrat d'un an, renouvelable ‼️<br><br>
+        <strong>Description :</strong> 🏠<br>
+        Découvrez cette jolie villa individuelle, construite l'année dernière, située dans un quartier paisible de 📌 #Callodyne. Cette propriété bénéficie d'une proximité idéale à 5 minutes de la plage🌊🏖 , à seulement une minute à pied🚶🏽‍♂🚶‍♀ du supermarché Intermart 🛒, de l'arrêt de bus🚏🚍 et de la station d'essence Indian Oil.<br><br>
+        <strong>Caractéristiques de la villa :</strong> 🏠<br>
+        ✅ <strong>Chambres :</strong> 3 chambres climatisées,🛌 toutes en suite🚽🛁 (une au rez-de-chaussée avec accès direct à la piscine)🛌<br>
+        ✅ <strong>Salles de bain :</strong> 3 salles de bain (2 jaccuzzi) et 4 toilettes🚽🛁<br>
+        ✅ <strong>Espaces de vie :</strong> Salon spacieux 🛋🖥 + salle à manger🪑🍽<br>
+        ✅ <strong>Cuisine :</strong> Cuisine entièrement équipée🍳👩‍🍳<br>
+        ✅ <strong>Buanderie :</strong> Espace buanderie<br>
+        ✅ <strong>Stationnement :</strong> 2 places de parking🅿🚘<br>
+        ✅ <strong>Extérieur :</strong> Grande cour jardin, piscine privée🏊‍♀🩲<br>
+        ✅ <strong>Sécurité :</strong> Caméras de surveillance et barbelés de muraille électrique<br>
+        ✅ <strong>Connectivité :</strong> WiFi internet inclus<br><br>
+        ⚠️ <strong>Ne manquez pas cette occasion de vivre dans un cadre agréable et sécurisé.</strong> 🏃🏽🏃‍♀<br>
+        Pour plus d'informations ℹ️ ou pour organiser une visite,👀 veuillez nous 📱contacter. 5979 0408 (WhatsApp disponible 🤳✅)`
+      }
+    ];
+
+    function renderListings() {
+      const container = document.getElementById('property-listings');
+      container.innerHTML = '';
+      const type = document.getElementById('typeFilter').value;
+      const location = document.getElementById('locationFilter').value;
+
+      properties.forEach(prop => {
+        if ((type === 'all' || prop.type === type) && (location === 'all' || prop.location === location)) {
+          const cardHTML = `
+            <div class="col-md-4 property-card">
+              <div class="card h-100 shadow">
+                <img src="${prop.image}" class="property-img" alt="${prop.title}">
+                <div class="card-body">
+                  <h5 class="card-title">${prop.title}</h5>
+                  <p><strong>Location:</strong> ${prop.location}</p>
+                  <p>${prop.description}</p>
+                  <div class="d-flex flex-wrap gap-2 mt-3">
+                    <a href="${prop.facebookLink}" target="_blank" class="btn btn-primary btn-sm">View More Pictures</a>
+                    <a href="https://wa.me/59790408?text=${encodeURIComponent('Hi, I want to have more info about this property: ' + prop.title + ' Mr Amar')}" target="_blank" class="btn btn-success btn-sm">WhatsApp Inquiry</a>
+                    <a href="mailto:immohomemauritius@gmail.com?subject=Inquiry about ${encodeURIComponent(prop.title)}" target="_blank" class="btn btn-outline-light btn-sm">
+                      <i class="fas fa-envelope"></i> Email
+                    </a>
+                  </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- BOOKINGS TAB -->
-        <div class="tab-pane-custom" id="tab-bookings">
-            <div class="d-flex flex-wrap gap-2 mb-3 align-items-center">
-                <button class="btn btn-custom-primary" onclick="openBookingModal()"><i class="bi bi-plus-lg me-1"></i> Add Booking</button>
-                <button class="btn btn-outline-secondary btn-custom-sm" onclick="exportCSV()"><i class="bi bi-download me-1"></i> Export CSV</button>
-                <button class="btn btn-outline-secondary btn-custom-sm" onclick="document.getElementById('csvImportFile').click()"><i class="bi bi-upload me-1"></i> Import CSV</button>
-                <input type="file" id="csvImportFile" accept=".csv" style="display:none;" onchange="importCSV(event)">
-                <button class="btn btn-outline-info btn-custom-sm" onclick="printBookings()"><i class="bi bi-printer me-1"></i> Print</button>
-                <input type="text" class="form-control form-control-sm ms-auto" placeholder="Search bookings..." id="bookingSearch" style="max-width:220px;background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);" oninput="renderBookingsTable()">
-                <select class="form-select form-select-sm" id="filterStudio" style="max-width:130px;background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);" onchange="renderBookingsTable()">
-                    <option value="">All Studios</option>
-                    <option value="1">Studio 1</option><option value="2">Studio 2</option><option value="3">Studio 3</option>
-                    <option value="4">Studio 4</option><option value="5">Studio 5</option><option value="6">Studio 6</option>
-                    <option value="7">Studio 7</option><option value="8">Studio 8</option><option value="9">Studio 9</option>
-                </select>
-                <select class="form-select form-select-sm" id="filterStatus" style="max-width:140px;background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);" onchange="renderBookingsTable()">
-                    <option value="">All Statuses</option>
-                    <option value="Pending">Pending</option><option value="Confirmed">Confirmed</option>
-                    <option value="Checked-in">Checked-in</option><option value="Checked-out">Checked-out</option>
-                    <option value="Cancelled">Cancelled</option>
-                </select>
-                <input type="date" class="form-control form-control-sm" id="filterDate" style="max-width:160px;background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);" onchange="renderBookingsTable()" title="Filter by Check-in date">
-            </div>
-            <div class="table-responsive">
-                <table class="table table-custom" id="bookingsTable">
-                    <thead><tr>
-                        <th>Client</th><th>Studio</th><th>Check-in</th><th>Check-out</th><th>Nights</th><th>Total</th><th>Deposit</th><th>Balance</th><th>Status</th><th>Source</th><th>Actions</th>
-                    </tr></thead>
-                    <tbody></tbody>
-                </table>
-                <p class="text-muted text-center py-3" id="noBookingsMsg" style="display:none;">No bookings found.</p>
-            </div>
-        </div>
-
-        <!-- STUDIOS TAB -->
-        <div class="tab-pane-custom" id="tab-studios">
-            <h5 class="fw-semibold mb-3"><i class="bi bi-grid-3x3-gap me-2"></i>Studio Overview</h5>
-            <div class="row g-3" id="studioCardsContainer">
-                <!-- Filled by JS -->
-            </div>
-        </div>
-
-        <!-- CALENDAR TAB -->
-        <div class="tab-pane-custom" id="tab-calendar">
-            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                <h5 class="fw-semibold mb-0"><i class="bi bi-calendar-month me-2"></i>Booking Calendar</h5>
-                <div class="d-flex align-items-center gap-2">
-                    <button class="btn btn-sm btn-outline-secondary" onclick="navigateCalendar(-1)"><i class="bi bi-chevron-left"></i></button>
-                    <span class="fw-semibold" id="calendarMonthLabel"></span>
-                    <button class="btn btn-sm btn-outline-secondary" onclick="navigateCalendar(1)"><i class="bi bi-chevron-right"></i></button>
-                    <button class="btn btn-sm btn-outline-info" onclick="navigateCalendar(0)">Today</button>
-                </div>
-            </div>
-            <div class="card border rounded-3 shadow-sm p-3" style="background:var(--bg-card);">
-                <div class="calendar-grid" id="calendarGrid">
-                    <!-- Filled by JS -->
-                </div>
-                <div class="d-flex flex-wrap gap-3 mt-3 small">
-                    <span><span class="booking-dot d-inline-block me-1 dot-pending" style="width:8px;height:8px;"></span> Pending</span>
-                    <span><span class="booking-dot d-inline-block me-1 dot-confirmed" style="width:8px;height:8px;"></span> Confirmed</span>
-                    <span><span class="booking-dot d-inline-block me-1 dot-checked-in" style="width:8px;height:8px;"></span> Checked-in</span>
-                    <span><span class="booking-dot d-inline-block me-1 dot-checked-out" style="width:8px;height:8px;"></span> Checked-out</span>
-                    <span><span class="booking-dot d-inline-block me-1 dot-cancelled" style="width:8px;height:8px;"></span> Cancelled</span>
-                </div>
-            </div>
-            <div class="mt-3 card border rounded-3 shadow-sm p-3" style="background:var(--bg-card);" id="calendarDayDetails">
-                <p class="text-muted mb-0 text-center">Click a day to see booking details</p>
-            </div>
-        </div>
-
-        <!-- REPORTS TAB -->
-        <div class="tab-pane-custom" id="tab-reports">
-            <h5 class="fw-semibold mb-3"><i class="bi bi-graph-up me-2"></i>Reports</h5>
-            <div class="row g-3 mb-3">
-                <div class="col-md-4"><button class="btn btn-outline-primary w-100" onclick="generateReport('daily')"><i class="bi bi-calendar-day me-1"></i> Daily Report</button></div>
-                <div class="col-md-4"><button class="btn btn-outline-primary w-100" onclick="generateReport('weekly')"><i class="bi bi-calendar-week me-1"></i> Weekly Report</button></div>
-                <div class="col-md-4"><button class="btn btn-outline-primary w-100" onclick="generateReport('monthly')"><i class="bi bi-calendar-month me-1"></i> Monthly Report</button></div>
-                <div class="col-md-6"><button class="btn btn-outline-success w-100" onclick="generateReport('revenue')"><i class="bi bi-cash-stack me-1"></i> Revenue Report</button></div>
-                <div class="col-md-6"><button class="btn btn-outline-info w-100" onclick="generateReport('occupancy')"><i class="bi bi-pie-chart me-1"></i> Occupancy Report</button></div>
-            </div>
-            <div class="card border rounded-3 shadow-sm p-3" style="background:var(--bg-card);" id="reportOutput">
-                <p class="text-muted text-center mb-0">Select a report type to generate</p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- ==================== BOOKING MODAL ==================== -->
-    <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-            <div class="modal-content modal-content-custom">
-                <div class="modal-header modal-header-custom">
-                    <h5 class="modal-title fw-semibold" id="bookingModalTitle"><i class="bi bi-pencil-square me-2"></i>Add Booking</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter:var(--text-primary);"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="bookingForm" novalidate>
-                        <input type="hidden" id="bookingId">
-                        <div class="row g-3">
-                            <!-- Client Info -->
-                            <div class="col-md-6"><label class="form-label fw-semibold small">Full Name <span class="text-danger">*</span></label><input type="text" class="form-control" id="clientName" required placeholder="e.g. Jean Dupont" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-6"><label class="form-label fw-semibold small">Phone Number <span class="text-danger">*</span></label><input type="tel" class="form-control" id="phone" required placeholder="+230 5XXX XXXX" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">WhatsApp Number</label><input type="tel" class="form-control" id="whatsapp" placeholder="+230 5XXX XXXX" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Email</label><input type="email" class="form-control" id="email" placeholder="client@email.com" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Nationality</label><input type="text" class="form-control" id="nationality" placeholder="e.g. French" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-6"><label class="form-label fw-semibold small">ID / Passport Number</label><input type="text" class="form-control" id="idPassport" placeholder="Passport or ID number" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <!-- Booking Details -->
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Studio Number <span class="text-danger">*</span></label><select class="form-select" id="studioNumber" required style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"><option value="">Select</option><option value="1">Studio 1</option><option value="2">Studio 2</option><option value="3">Studio 3</option><option value="4">Studio 4</option><option value="5">Studio 5</option><option value="6">Studio 6</option><option value="7">Studio 7</option><option value="8">Studio 8</option><option value="9">Studio 9</option></select></div>
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Check-in Date <span class="text-danger">*</span></label><input type="date" class="form-control" id="checkIn" required onchange="autoCalculate()" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Check-out Date <span class="text-danger">*</span></label><input type="date" class="form-control" id="checkOut" required onchange="autoCalculate()" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Nights</label><input type="number" class="form-control" id="nights" readonly style="background:var(--card-header-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Adults</label><input type="number" class="form-control" id="adults" value="1" min="1" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Children</label><input type="number" class="form-control" id="children" value="0" min="0" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Price/Night (MUR)</label><input type="number" class="form-control" id="pricePerNight" value="0" min="0" step="0.01" oninput="autoCalculate()" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-3"><label class="form-label fw-semibold small">Total Price (MUR)</label><input type="number" class="form-control" id="totalPrice" readonly style="background:var(--card-header-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Deposit Paid (MUR)</label><input type="number" class="form-control" id="deposit" value="0" min="0" step="0.01" oninput="autoCalculate()" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Remaining Balance (MUR)</label><input type="number" class="form-control" id="balance" readonly style="background:var(--card-header-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Booking Source</label><select class="form-select" id="bookingSource" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"><option value="Direct">Direct</option><option value="Facebook">Facebook</option><option value="TikTok">TikTok</option><option value="WhatsApp">WhatsApp</option><option value="Airbnb">Airbnb</option><option value="Booking.com">Booking.com</option><option value="Agoda">Agoda</option><option value="Expedia">Expedia</option><option value="Other">Other</option></select></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Arrival Time</label><input type="time" class="form-control" id="arrivalTime" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Departure Time</label><input type="time" class="form-control" id="departureTime" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-4"><label class="form-label fw-semibold small">Vehicle Registration</label><input type="text" class="form-control" id="vehicleReg" placeholder="Optional" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></div>
-                            <div class="col-md-6"><label class="form-label fw-semibold small">Special Requests</label><textarea class="form-control" id="specialRequests" rows="2" placeholder="Any special requests..." style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></textarea></div>
-                            <div class="col-md-6"><label class="form-label fw-semibold small">Internal Notes</label><textarea class="form-control" id="internalNotes" rows="2" placeholder="Private notes..." style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"></textarea></div>
-                            <div class="col-md-6"><label class="form-label fw-semibold small">Booking Status</label><select class="form-select" id="bookingStatus" style="background:var(--input-bg);color:var(--text-primary);border-color:var(--input-border);"><option value="Pending">Pending</option><option value="Confirmed">Confirmed</option><option value="Checked-in">Checked-in</option><option value="Checked-out">Checked-out</option><option value="Cancelled">Cancelled</option></select></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer border-top" style="border-color:var(--border-color)!important;">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-custom-primary" onclick="saveBooking()"><i class="bi bi-check-lg me-1"></i> Save Booking</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== WHATSAPP MODAL ==================== -->
-    <div class="modal fade" id="whatsappModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content modal-content-custom">
-                <div class="modal-header modal-header-custom">
-                    <h5 class="modal-title fw-semibold"><i class="bi bi-whatsapp me-2 text-success"></i>WhatsApp Message</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <textarea class="form-control mb-3" id="whatsappMessage" rows="12" readonly style="background:var(--card-header-bg);color:var(--text-primary);font-family:monospace;font-size:0.85rem;"></textarea>
-                    <div class="d-flex gap-2 flex-wrap">
-                        <button class="btn btn-success btn-sm" onclick="openWhatsApp()"><i class="bi bi-whatsapp me-1"></i> Open WhatsApp</button>
-                        <button class="btn btn-outline-secondary btn-sm" onclick="copyWhatsAppMessage()"><i class="bi bi-clipboard me-1"></i> Copy Message</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="text-center py-3 mt-4 border-top" style="border-color:var(--border-color)!important;">
-        <small class="text-muted">Developed for Studio Booking Manager - Trou aux Biches, Mauritius</small>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-    </script>
-
-    <script>
-        (function() {
-            // ==================== CONSTANTS ====================
-            const TOTAL_STUDIOS = 9;
-            const STORAGE_KEY = 'studioBookingManager_data';
-            const THEME_KEY = 'studioBookingManager_theme';
-            const STATUSES = ['Pending', 'Confirmed', 'Checked-in', 'Checked-out', 'Cancelled'];
-            const SOURCES = ['Direct', 'Facebook', 'TikTok', 'WhatsApp', 'Airbnb', 'Booking.com', 'Agoda',
-            'Expedia', 'Other'];
-            const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-                'October', 'November', 'December'
-            ];
-
-            // ==================== STATE ====================
-            let bookings = [];
-            let calendarYear, calendarMonth;
-            let currentWhatsAppBookingId = null;
-
-            // ==================== DOM REFS ====================
-            const $spinner = document.getElementById('spinnerOverlay');
-            const $toastContainer = document.getElementById('toastContainer');
-            const $notifBadge = document.getElementById('notifBadge');
-            const $notifDropdown = document.getElementById('notifDropdown');
-            const $notifList = document.getElementById('notifList');
-            const $themeIcon = document.getElementById('themeIcon');
-            const $bookingModalEl = document.getElementById('bookingModal');
-            const $whatsappModalEl = document.getElementById('whatsappModal');
-            let bookingModal, whatsappModal;
-
-            // ==================== LOCAL STORAGE ====================
-            function loadBookings() {
-                try {
-                    const raw = localStorage.getItem(STORAGE_KEY);
-                    bookings = raw ? JSON.parse(raw) : [];
-                    if (!Array.isArray(bookings)) bookings = [];
-                } catch (e) {
-                    bookings = [];
-                }
-            }
-
-            function saveBookings() {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
-            }
-
-            function loadTheme() {
-                const saved = localStorage.getItem(THEME_KEY);
-                if (saved === 'dark') {
-                    document.body.classList.add('dark-mode');
-                    $themeIcon.className = 'bi bi-sun-fill';
-                } else {
-                    document.body.classList.remove('dark-mode');
-                    $themeIcon.className = 'bi bi-moon-stars';
-                }
-            }
-
-            function saveTheme() {
-                const isDark = document.body.classList.contains('dark-mode');
-                localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
-            }
-
-            // ==================== HELPERS ====================
-            function generateId() {
-                return 'bk_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-            }
-
-            function formatDate(dateStr) {
-                if (!dateStr) return '—';
-                const d = new Date(dateStr + 'T00:00:00');
-                return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-            }
-
-            function formatCurrency(amount) {
-                return 'MUR ' + parseFloat(amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2,
-                    maximumFractionDigits: 2 });
-            }
-
-            function getTodayStr() {
-                return new Date().toISOString().split('T')[0];
-            }
-
-            function daysBetween(d1, d2) {
-                const a = new Date(d1 + 'T00:00:00');
-                const b = new Date(d2 + 'T00:00:00');
-                return Math.max(0, Math.round((b - a) / (1000 * 60 * 60 * 24)));
-            }
-
-            function datesOverlap(checkIn1, checkOut1, checkIn2, checkOut2) {
-                return checkIn1 < checkOut2 && checkOut1 > checkIn2;
-            }
-
-            function getStatusBadgeClass(status) {
-                const map = {
-                    'Pending': 'bg-warning text-dark',
-                    'Confirmed': 'bg-info text-white',
-                    'Checked-in': 'bg-success text-white',
-                    'Checked-out': 'bg-secondary text-white',
-                    'Cancelled': 'bg-danger text-white'
-                };
-                return map[status] || 'bg-light text-dark';
-            }
-
-            // ==================== TOAST ====================
-            function showToast(message, type = 'info') {
-                const icons = { success: 'bi-check-circle-fill text-success', error: 'bi-exclamation-circle-fill text-danger',
-                    info: 'bi-info-circle-fill text-info', warning: 'bi-exclamation-triangle-fill text-warning' };
-                const toastHTML = `
-                <div class="toast toast-custom align-items-center border-0 mb-2" role="alert" data-bs-delay="3500">
-                    <div class="d-flex">
-                        <div class="toast-body d-flex align-items-center gap-2">
-                            <i class="bi ${icons[type] || icons.info} fs-5"></i> ${message}
-                        </div>
-                        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                </div>`;
-                $toastContainer.insertAdjacentHTML('beforeend', toastHTML);
-                const toastEl = $toastContainer.lastElementChild;
-                const toast = new bootstrap.Toast(toastEl);
-                toast.show();
-                toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
-            }
-
-            // ==================== THEME ====================
-            window.toggleTheme = function() {
-                document.body.classList.toggle('dark-mode');
-                const isDark = document.body.classList.contains('dark-mode');
-                $themeIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-stars';
-                saveTheme();
-                refreshAllUI();
-            };
-
-            // ==================== NOTIFICATIONS ====================
-            function getNotifications() {
-                const today = getTodayStr();
-                const notifs = [];
-                const todayBookings = bookings.filter(b => b.checkIn === today && b.status !== 'Cancelled' && b
-                    .status !== 'Checked-out');
-                const checkoutToday = bookings.filter(b => b.checkOut === today && b.status === 'Checked-in');
-                const outstanding = bookings.filter(b => parseFloat(b.balance || 0) > 0 && b.status !== 'Cancelled' && b
-                    .status !== 'Checked-out');
-                const upcoming = bookings.filter(b => {
-                    const diff = daysBetween(today, b.checkIn);
-                    return diff > 0 && diff <= 7 && b.status !== 'Cancelled' && b.status !== 'Checked-out';
-                });
-
-                todayBookings.forEach(b => notifs.push({ type: 'checkin', text: `Check-in today: ${b.clientName} - Studio ${b.studioNumber}`,
-                    icon: 'bi-box-arrow-in-right text-warning' }));
-                checkoutToday.forEach(b => notifs.push({ type: 'checkout', text: `Check-out today: ${b.clientName} - Studio ${b.studioNumber}`,
-                    icon: 'bi-box-arrow-right text-info' }));
-                outstanding.forEach(b => notifs.push({ type: 'balance', text: `Outstanding balance: ${b.clientName} - ${formatCurrency(b.balance)}`,
-                    icon: 'bi-cash text-danger' }));
-                upcoming.forEach(b => notifs.push({ type: 'upcoming', text: `Upcoming: ${b.clientName} - Studio ${b.studioNumber} on ${formatDate(b.checkIn)}`,
-                    icon: 'bi-calendar-event text-primary' }));
-                return notifs;
-            }
-
-            function updateNotificationBadge() {
-                const notifs = getNotifications();
-                if (notifs.length > 0) {
-                    $notifBadge.style.display = 'flex';
-                    $notifBadge.textContent = notifs.length;
-                } else {
-                    $notifBadge.style.display = 'none';
-                }
-                renderNotificationList(notifs);
-            }
-
-            function renderNotificationList(notifs) {
-                if (notifs.length === 0) {
-                    $notifList.innerHTML = '<p class="text-muted mb-0 small">No notifications</p>';
-                } else {
-                    $notifList.innerHTML = notifs.map(n =>
-                        `<div class="d-flex align-items-center gap-2 py-1 border-bottom small" style="border-color:var(--border-color)!important;"><i class="bi ${n.icon}"></i> ${n.text}</div>`
-                    ).join('');
-                }
-            }
-
-            window.toggleNotifications = function() {
-                const isVisible = $notifDropdown.style.display === 'block';
-                $notifDropdown.style.display = isVisible ? 'none' : 'block';
-                if (!isVisible) updateNotificationBadge();
-            };
-
-            // Close notifications when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!$notifDropdown.contains(e.target) && e.target !== document.getElementById('notifBell') && !document
-                    .getElementById('notifBell').contains(e.target)) {
-                    $notifDropdown.style.display = 'none';
-                }
-            });
-
-            // ==================== TAB SWITCHING ====================
-            window.switchTab = function(tabName) {
-                document.querySelectorAll('.tab-pane-custom').forEach(p => p.classList.remove('active'));
-                document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
-                const pane = document.getElementById('tab-' + tabName);
-                if (pane) pane.classList.add('active');
-                const btn = document.querySelector(`[data-tab="${tabName}"]`);
-                if (btn) btn.classList.add('active');
-                if (tabName === 'dashboard') renderDashboard();
-                if (tabName === 'studios') renderStudioCards();
-                if (tabName === 'calendar') renderCalendar();
-                if (tabName === 'bookings') renderBookingsTable();
-                if (tabName === 'reports') document.getElementById('reportOutput').innerHTML =
-                    '<p class="text-muted text-center mb-0">Select a report type to generate</p>';
-                $notifDropdown.style.display = 'none';
-            };
-
-            // Nav tab click handlers
-            document.getElementById('navTabs').addEventListener('click', function(e) {
-                const btn = e.target.closest('.nav-tab-btn');
-                if (btn) {
-                    const tab = btn.getAttribute('data-tab');
-                    if (tab) switchTab(tab);
-                }
-            });
-
-            // ==================== AUTO CALCULATE ====================
-            window.autoCalculate = function() {
-                const checkIn = document.getElementById('checkIn').value;
-                const checkOut = document.getElementById('checkOut').value;
-                const pricePerNight = parseFloat(document.getElementById('pricePerNight').value) || 0;
-                const deposit = parseFloat(document.getElementById('deposit').value) || 0;
-                let nights = 0;
-                if (checkIn && checkOut) {
-                    nights = daysBetween(checkIn, checkOut);
-                }
-                const totalPrice = nights * pricePerNight;
-                const balance = totalPrice - deposit;
-                document.getElementById('nights').value = nights;
-                document.getElementById('totalPrice').value = totalPrice.toFixed(2);
-                document.getElementById('balance').value = balance.toFixed(2);
-            };
-
-            // ==================== BOOKING MODAL ====================
-            window.openBookingModal = function(bookingId = null) {
-                const form = document.getElementById('bookingForm');
-                form.reset();
-                document.getElementById('bookingId').value = '';
-                document.getElementById('bookingModalTitle').innerHTML =
-                    '<i class="bi bi-pencil-square me-2"></i>Add Booking';
-                document.getElementById('nights').value = '';
-                document.getElementById('totalPrice').value = '';
-                document.getElementById('balance').value = '';
-                document.getElementById('adults').value = '1';
-                document.getElementById('children').value = '0';
-                document.getElementById('pricePerNight').value = '0';
-                document.getElementById('deposit').value = '0';
-                document.getElementById('bookingStatus').value = 'Pending';
-                document.getElementById('bookingSource').value = 'Direct';
-
-                if (bookingId) {
-                    const bk = bookings.find(b => b.id === bookingId);
-                    if (bk) {
-                        document.getElementById('bookingId').value = bk.id;
-                        document.getElementById('bookingModalTitle').innerHTML =
-                            '<i class="bi bi-pencil-square me-2"></i>Edit Booking';
-                        populateFormFromBooking(bk);
-                    }
-                }
-                bookingModal.show();
-            };
-
-            function populateFormFromBooking(bk) {
-                document.getElementById('clientName').value = bk.clientName || '';
-                document.getElementById('phone').value = bk.phone || '';
-                document.getElementById('whatsapp').value = bk.whatsapp || '';
-                document.getElementById('email').value = bk.email || '';
-                document.getElementById('nationality').value = bk.nationality || '';
-                document.getElementById('idPassport').value = bk.idPassport || '';
-                document.getElementById('studioNumber').value = bk.studioNumber;
-                document.getElementById('checkIn').value = bk.checkIn;
-                document.getElementById('checkOut').value = bk.checkOut;
-                document.getElementById('adults').value = bk.adults || 1;
-                document.getElementById('children').value = bk.children || 0;
-                document.getElementById('pricePerNight').value = bk.pricePerNight || 0;
-                document.getElementById('deposit').value = bk.deposit || 0;
-                document.getElementById('bookingSource').value = bk.bookingSource || 'Direct';
-                document.getElementById('arrivalTime').value = bk.arrivalTime || '';
-                document.getElementById('departureTime').value = bk.departureTime || '';
-                document.getElementById('vehicleReg').value = bk.vehicleReg || '';
-                document.getElementById('specialRequests').value = bk.specialRequests || '';
-                document.getElementById('internalNotes').value = bk.internalNotes || '';
-                document.getElementById('bookingStatus').value = bk.status || 'Pending';
-                autoCalculate();
-            }
-
-            function getFormData() {
-                return {
-                    id: document.getElementById('bookingId').value || generateId(),
-                    clientName: document.getElementById('clientName').value.trim(),
-                    phone: document.getElementById('phone').value.trim(),
-                    whatsapp: document.getElementById('whatsapp').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    nationality: document.getElementById('nationality').value.trim(),
-                    idPassport: document.getElementById('idPassport').value.trim(),
-                    studioNumber: parseInt(document.getElementById('studioNumber').value) || 0,
-                    checkIn: document.getElementById('checkIn').value,
-                    checkOut: document.getElementById('checkOut').value,
-                    nights: parseInt(document.getElementById('nights').value) || 0,
-                    adults: parseInt(document.getElementById('adults').value) || 1,
-                    children: parseInt(document.getElementById('children').value) || 0,
-                    pricePerNight: parseFloat(document.getElementById('pricePerNight').value) || 0,
-                    totalPrice: parseFloat(document.getElementById('totalPrice').value) || 0,
-                    deposit: parseFloat(document.getElementById('deposit').value) || 0,
-                    balance: parseFloat(document.getElementById('balance').value) || 0,
-                    bookingSource: document.getElementById('bookingSource').value,
-                    arrivalTime: document.getElementById('arrivalTime').value,
-                    departureTime: document.getElementById('departureTime').value,
-                    vehicleReg: document.getElementById('vehicleReg').value.trim(),
-                    specialRequests: document.getElementById('specialRequests').value.trim(),
-                    internalNotes: document.getElementById('internalNotes').value.trim(),
-                    status: document.getElementById('bookingStatus').value,
-                    createdAt: new Date().toISOString(),
-                };
-            }
-
-            window.saveBooking = function() {
-                const data = getFormData();
-                // Validate
-                if (!data.clientName) return showToast('Client full name is required.', 'error');
-                if (!data.phone) return showToast('Phone number is required.', 'error');
-                if (!data.studioNumber || data.studioNumber < 1 || data.studioNumber > 9) return showToast(
-                    'Please select a valid studio.', 'error');
-                if (!data.checkIn || !data.checkOut) return showToast('Check-in and check-out dates are required.',
-                    'error');
-                if (data.checkOut <= data.checkIn) return showToast('Check-out date must be after check-in date.',
-                'error');
-
-                // Check for overlapping bookings (same studio, active statuses)
-                const existingId = document.getElementById('bookingId').value;
-                const overlap = bookings.find(b => {
-                    if (b.id === existingId) return false;
-                    if (b.studioNumber !== data.studioNumber) return false;
-                    if (b.status === 'Cancelled' || b.status === 'Checked-out') return false;
-                    return datesOverlap(data.checkIn, data.checkOut, b.checkIn, b.checkOut);
-                });
-                if (overlap) {
-                    return showToast(
-                        `Studio ${data.studioNumber} is already booked for these dates (${overlap.clientName}).`, 'error');
-                }
-
-                // Save
-                const existingIndex = bookings.findIndex(b => b.id === existingId);
-                if (existingIndex >= 0) {
-                    data.createdAt = bookings[existingIndex].createdAt || data.createdAt;
-                    bookings[existingIndex] = data;
-                    showToast('Booking updated successfully!', 'success');
-                } else {
-                    bookings.push(data);
-                    showToast('Booking added successfully!', 'success');
-                }
-                saveBookings();
-                bookingModal.hide();
-                refreshAllUI();
-            };
-
-            window.deleteBooking = function(bookingId) {
-                const bk = bookings.find(b => b.id === bookingId);
-                if (!bk) return;
-                if (!confirm(
-                        `Are you sure you want to delete the booking for "${bk.clientName}" (Studio ${bk.studioNumber})? This cannot be undone.`
-                        )) return;
-                bookings = bookings.filter(b => b.id !== bookingId);
-                saveBookings();
-                showToast('Booking deleted.', 'info');
-                refreshAllUI();
-            };
-
-            window.duplicateBooking = function(bookingId) {
-                const bk = bookings.find(b => b.id === bookingId);
-                if (!bk) return;
-                const newBooking = { ...bk, id: generateId(), clientName: bk.clientName + ' (Copy)', checkIn: '', checkOut: '',
-                    nights: 0, totalPrice: 0, balance: 0, deposit: 0, createdAt: new Date().toISOString(),
-                    status: 'Pending' };
-                bookings.push(newBooking);
-                saveBookings();
-                showToast('Booking duplicated. Please edit the dates.', 'success');
-                openBookingModal(newBooking.id);
-                refreshAllUI();
-            };
-
-            // ==================== WHATSAPP ====================
-            window.generateWhatsAppMessage = function(bookingId) {
-                const bk = bookings.find(b => b.id === bookingId);
-                if (!bk) return;
-                currentWhatsAppBookingId = bookingId;
-                const msg = `🏠 *NEW BOOKING*\n\n` +
-                    `*Client:* ${bk.clientName}\n` +
-                    `*Phone:* ${bk.phone}\n` +
-                    `*Studio:* ${bk.studioNumber}\n` +
-                    `*Check-in:* ${formatDate(bk.checkIn)}\n` +
-                    `*Check-out:* ${formatDate(bk.checkOut)}\n` +
-                    `*Nights:* ${bk.nights}\n` +
-                    `*Adults:* ${bk.adults}\n` +
-                    `*Children:* ${bk.children}\n` +
-                    `*Total Price:* ${formatCurrency(bk.totalPrice)}\n` +
-                    `*Deposit:* ${formatCurrency(bk.deposit)}\n` +
-                    `*Balance:* ${formatCurrency(bk.balance)}\n` +
-                    `*Arrival Time:* ${bk.arrivalTime || 'N/A'}\n` +
-                    `*Booking Source:* ${bk.bookingSource}\n` +
-                    `*Notes:* ${bk.specialRequests || 'None'}\n\n` +
-                    `Thank you.`;
-                document.getElementById('whatsappMessage').value = msg;
-                whatsappModal.show();
-            };
-
-            window.openWhatsApp = function() {
-                const bk = bookings.find(b => b.id === currentWhatsAppBookingId);
-                if (!bk) return;
-                const phone = (bk.whatsapp || bk.phone || '').replace(/[^0-9+]/g, '');
-                if (!phone) return showToast('No WhatsApp/phone number available for this booking.', 'warning');
-                const msg = document.getElementById('whatsappMessage').value;
-                const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-                window.open(url, '_blank');
-            };
-
-            window.copyWhatsAppMessage = function() {
-                const msg = document.getElementById('whatsappMessage').value;
-                navigator.clipboard.writeText(msg).then(() => {
-                    showToast('Message copied to clipboard!', 'success');
-                }).catch(() => {
-                    document.getElementById('whatsappMessage').select();
-                    document.execCommand('copy');
-                    showToast('Message copied!', 'success');
-                });
-            };
-
-            // ==================== CSV ====================
-            window.exportCSV = function() {
-                if (bookings.length === 0) return showToast('No bookings to export.', 'warning');
-                const headers = ['ID', 'Client Name', 'Phone', 'WhatsApp', 'Email', 'Nationality', 'ID/Passport',
-                    'Studio', 'Check-in', 'Check-out', 'Nights', 'Adults', 'Children', 'Price/Night',
-                    'Total Price', 'Deposit', 'Balance', 'Source', 'Arrival Time', 'Departure Time',
-                    'Vehicle Reg', 'Special Requests', 'Internal Notes', 'Status', 'Created At'
-                ];
-                const rows = bookings.map(b => [
-                    b.id, b.clientName, b.phone, b.whatsapp, b.email, b.nationality, b.idPassport,
-                    b.studioNumber, b.checkIn, b.checkOut, b.nights, b.adults, b.children,
-                    b.pricePerNight, b.totalPrice, b.deposit, b.balance, b.bookingSource,
-                    b.arrivalTime, b.departureTime, b.vehicleReg, b.specialRequests, b.internalNotes,
-                    b.status, b.createdAt
-                ]);
-                const csvContent = [headers, ...rows].map(row =>
-                    row.map(cell => '"' + String(cell || '').replace(/"/g, '""') + '"').join(',')
-                ).join('\n');
-                const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'studio_bookings_' + getTodayStr() + '.csv';
-                a.click();
-                URL.revokeObjectURL(url);
-                showToast('Bookings exported to CSV!', 'success');
-            };
-
-            window.importCSV = function(event) {
-                const file = event.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const text = e.target.result;
-                        const lines = text.split('\n').filter(l => l.trim());
-                        if (lines.length < 2) return showToast('CSV file is empty or has no data rows.',
-                        'error');
-                        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim()
-                    .toLowerCase());
-                        let imported = 0;
-                        for (let i = 1; i < lines.length; i++) {
-                            const cells = parseCSVLine(lines[i]);
-                            if (cells.length < 10) continue;
-                            const row = {};
-                            headers.forEach((h, idx) => { row[h] = cells[idx] || ''; });
-                            const booking = {
-                                id: row['id'] || generateId(),
-                                clientName: row['client name'] || row['clientname'] || '',
-                                phone: row['phone'] || '',
-                                whatsapp: row['whatsapp'] || '',
-                                email: row['email'] || '',
-                                nationality: row['nationality'] || '',
-                                idPassport: row['id/passport'] || row['idpassport'] || '',
-                                studioNumber: parseInt(row['studio']) || 1,
-                                checkIn: row['check-in'] || row['checkin'] || '',
-                                checkOut: row['check-out'] || row['checkout'] || '',
-                                nights: parseInt(row['nights']) || 0,
-                                adults: parseInt(row['adults']) || 1,
-                                children: parseInt(row['children']) || 0,
-                                pricePerNight: parseFloat(row['price/night'] || row['pricenight']) || 0,
-                                totalPrice: parseFloat(row['total price'] || row['totalprice']) || 0,
-                                deposit: parseFloat(row['deposit']) || 0,
-                                balance: parseFloat(row['balance']) || 0,
-                                bookingSource: row['source'] || 'Direct',
-                                arrivalTime: row['arrival time'] || row['arrivaltime'] || '',
-                                departureTime: row['departure time'] || row['departuretime'] || '',
-                                vehicleReg: row['vehicle reg'] || row['vehiclereg'] || '',
-                                specialRequests: row['special requests'] || row['specialrequests'] || '',
-                                internalNotes: row['internal notes'] || row['internalnotes'] || '',
-                                status: row['status'] || 'Pending',
-                                createdAt: row['created at'] || row['createdat'] || new Date()
-                                    .toISOString(),
-                            };
-                            if (booking.clientName && booking.checkIn && booking.checkOut) {
-                                const exists = bookings.find(b => b.id === booking.id);
-                                if (!exists) {
-                                    bookings.push(booking);
-                                    imported++;
-                                }
-                            }
-                        }
-                        saveBookings();
-                        showToast(`Imported ${imported} booking(s) successfully!`, 'success');
-                        refreshAllUI();
-                    } catch (err) {
-                        showToast('Error parsing CSV file: ' + err.message, 'error');
-                    }
-                };
-                reader.readAsText(file, 'UTF-8');
-                event.target.value = '';
-            };
-
-            function parseCSVLine(line) {
-                const result = [];
-                let current = '';
-                let inQuotes = false;
-                for (let i = 0; i < line.length; i++) {
-                    const ch = line[i];
-                    if (inQuotes) {
-                        if (ch === '"' && i + 1 < line.length && line[i + 1] === '"') {
-                            current += '"';
-                            i++;
-                        } else if (ch === '"') {
-                            inQuotes = false;
-                        } else {
-                            current += ch;
-                        }
-                    } else {
-                        if (ch === '"') {
-                            inQuotes = true;
-                        } else if (ch === ',') {
-                            result.push(current.trim());
-                            current = '';
-                        } else {
-                            current += ch;
-                        }
-                    }
-                }
-                result.push(current.trim());
-                return result;
-            }
-
-            // ==================== PRINT ====================
-            window.printBookings = function() {
-                window.print();
-            };
-
-            // ==================== RENDER: DASHBOARD ====================
-            function renderDashboard() {
-                const today = getTodayStr();
-                const now = new Date();
-                const currentMonth = now.getMonth();
-                const currentYear = now.getFullYear();
-
-                const activeBookings = bookings.filter(b => b.status !== 'Cancelled' && b.status !== 'Checked-out');
-                const occupiedStudios = new Set(activeBookings.filter(b => b.status === 'Checked-in' && b.checkIn <=
-                    today && b.checkOut > today).map(b => b.studioNumber));
-                const arrivingToday = activeBookings.filter(b => b.checkIn === today);
-                const departingToday = bookings.filter(b => b.checkOut === today && b.status === 'Checked-in');
-                const allActiveStudioNums = new Set(activeBookings.filter(b => b.checkIn <= today && b.checkOut > today).map(
-                    b => b.studioNumber));
-                const availableCount = TOTAL_STUDIOS - allActiveStudioNums.size;
-
-                const monthlyRevenue = bookings
-                    .filter(b => {
-                        const bDate = new Date(b.checkIn + 'T00:00:00');
-                        return bDate.getMonth() === currentMonth && bDate.getFullYear() === currentYear && b
-                            .status !== 'Cancelled';
-                    })
-                    .reduce((sum, b) => sum + parseFloat(b.totalPrice || 0), 0);
-
-                const totalBookings = bookings.length;
-
-                const stats = [
-                    { icon: 'bi-buildings icon-blue', value: TOTAL_STUDIOS, label: 'Total Studios' },
-                    { icon: 'bi-check-circle icon-green', value: availableCount, label: 'Available Studios' },
-                    { icon: 'bi-x-circle icon-red', value: occupiedStudios.size, label: 'Occupied Studios' },
-                    { icon: 'bi-box-arrow-in-right icon-orange', value: arrivingToday.length,
-                        label: "Today's Check-ins" },
-                    { icon: 'bi-box-arrow-right icon-blue', value: departingToday.length,
-                    label: "Today's Check-outs" },
-                    { icon: 'bi-cash-stack icon-teal', value: formatCurrency(monthlyRevenue),
-                        label: 'Monthly Revenue' },
-                    { icon: 'bi-calendar-check icon-purple', value: totalBookings, label: 'Total Bookings' },
-                ];
-
-                document.getElementById('dashboardStats').innerHTML = stats.map(s => `
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="stat-card">
-                            <div class="stat-icon ${s.icon.split(' ')[1] || 'icon-blue'}"><i class="bi ${s.icon.split(' ')[0]}"></i></div>
-                            <div class="stat-value">${s.value}</div>
-                            <div class="stat-label">${s.label}</div>
-                        </div>
-                    </div>
-                `).join('');
-
-                // Recent bookings table
-                const recent = [...bookings].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10);
-                const tbody = document.querySelector('#dashboardRecentTable tbody');
-                tbody.innerHTML = recent.length === 0 ?
-                    '<tr><td colspan="6" class="text-center text-muted py-3">No bookings yet.</td></tr>' :
-                    recent.map(b => `
-                        <tr>
-                            <td><strong>${escapeHTML(b.clientName)}</strong></td>
-                            <td>Studio ${b.studioNumber}</td>
-                            <td>${formatDate(b.checkIn)}</td>
-                            <td>${formatDate(b.checkOut)}</td>
-                            <td><span class="badge ${getStatusBadgeClass(b.status)}">${b.status}</span></td>
-                            <td class="${parseFloat(b.balance) > 0 ? 'text-danger fw-semibold' : 'text-success'}">${formatCurrency(b.balance)}</td>
-                        </tr>
-                    `).join('');
-            }
-
-            function escapeHTML(str) {
-                const div = document.createElement('div');
-                div.textContent = str;
-                return div.innerHTML;
-            }
-
-            // ==================== RENDER: BOOKINGS TABLE ====================
-            window.renderBookingsTable = function() {
-                const searchTerm = (document.getElementById('bookingSearch').value || '').toLowerCase();
-                const filterStudio = document.getElementById('filterStudio').value;
-                const filterStatus = document.getElementById('filterStatus').value;
-                const filterDate = document.getElementById('filterDate').value;
-
-                let filtered = [...bookings];
-                if (searchTerm) {
-                    filtered = filtered.filter(b =>
-                        b.clientName.toLowerCase().includes(searchTerm) ||
-                        b.phone.includes(searchTerm) ||
-                        b.email.toLowerCase().includes(searchTerm) ||
-                        String(b.studioNumber).includes(searchTerm)
-                    );
-                }
-                if (filterStudio) filtered = filtered.filter(b => b.studioNumber === parseInt(filterStudio));
-                if (filterStatus) filtered = filtered.filter(b => b.status === filterStatus);
-                if (filterDate) filtered = filtered.filter(b => b.checkIn === filterDate);
-
-                filtered.sort((a, b) => new Date(b.checkIn) - new Date(a.checkIn));
-
-                const tbody = document.querySelector('#bookingsTable tbody');
-                const noMsg = document.getElementById('noBookingsMsg');
-                if (filtered.length === 0) {
-                    tbody.innerHTML = '';
-                    noMsg.style.display = 'block';
-                } else {
-                    noMsg.style.display = 'none';
-                    tbody.innerHTML = filtered.map(b => `
-                        <tr>
-                            <td><strong>${escapeHTML(b.clientName)}</strong><br><small class="text-muted">${escapeHTML(b.phone)}</small></td>
-                            <td>Studio ${b.studioNumber}</td>
-                            <td>${formatDate(b.checkIn)}</td>
-                            <td>${formatDate(b.checkOut)}</td>
-                            <td>${b.nights}</td>
-                            <td>${formatCurrency(b.totalPrice)}</td>
-                            <td>${formatCurrency(b.deposit)}</td>
-                            <td class="${parseFloat(b.balance) > 0 ? 'text-danger fw-semibold' : 'text-success'}">${formatCurrency(b.balance)}</td>
-                            <td><span class="badge ${getStatusBadgeClass(b.status)}">${b.status}</span></td>
-                            <td><small>${b.bookingSource}</small></td>
-                            <td>
-                                <div class="d-flex gap-1 flex-wrap">
-                                    <button class="btn btn-outline-info btn-custom-sm" title="WhatsApp" onclick="generateWhatsAppMessage('${b.id}')"><i class="bi bi-whatsapp"></i></button>
-                                    <button class="btn btn-outline-primary btn-custom-sm" title="Edit" onclick="openBookingModal('${b.id}')"><i class="bi bi-pencil"></i></button>
-                                    <button class="btn btn-outline-secondary btn-custom-sm" title="Duplicate" onclick="duplicateBooking('${b.id}')"><i class="bi bi-files"></i></button>
-                                    <button class="btn btn-outline-danger btn-custom-sm" title="Delete" onclick="deleteBooking('${b.id}')"><i class="bi bi-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    `).join('');
-                }
-            };
-
-            // ==================== RENDER: STUDIO CARDS ====================
-            function renderStudioCards() {
-                const today = getTodayStr();
-                const container = document.getElementById('studioCardsContainer');
-                let html = '';
-                for (let s = 1; s <= TOTAL_STUDIOS; s++) {
-                    const activeBk = bookings.find(b =>
-                        b.studioNumber === s &&
-                        b.status !== 'Cancelled' &&
-                        b.status !== 'Checked-out' &&
-                        b.checkIn <= today &&
-                        b.checkOut > today
-                    );
-                    const arrivingBk = bookings.find(b =>
-                        b.studioNumber === s &&
-                        b.checkIn === today &&
-                        b.status !== 'Cancelled' &&
-                        b.status !== 'Checked-out' &&
-                        !(b.checkIn <= today && b.checkOut > today && b.status === 'Checked-in')
-                    );
-                    const departingBk = bookings.find(b =>
-                        b.studioNumber === s &&
-                        b.checkOut === today &&
-                        b.status === 'Checked-in'
-                    );
-
-                    let cardClass = 'available';
-                    let statusText = 'Available';
-                    let badgeClass = 'badge-available';
-                    let guestInfo = '—';
-                    let checkInInfo = '—';
-                    let checkOutInfo = '—';
-                    let nightsInfo = '—';
-                    let balanceInfo = '—';
-                    let bookingIdRef = null;
-
-                    if (activeBk && activeBk.status === 'Checked-in') {
-                        cardClass = 'occupied';
-                        statusText = 'Occupied';
-                        badgeClass = 'badge-occupied';
-                        guestInfo = activeBk.clientName;
-                        checkInInfo = formatDate(activeBk.checkIn);
-                        checkOutInfo = formatDate(activeBk.checkOut);
-                        nightsInfo = activeBk.nights;
-                        balanceInfo = formatCurrency(activeBk.balance);
-                        bookingIdRef = activeBk.id;
-                    } else if (departingBk) {
-                        cardClass = 'departing';
-                        statusText = 'Departing Today';
-                        badgeClass = 'badge-departing';
-                        guestInfo = departingBk.clientName;
-                        checkInInfo = formatDate(departingBk.checkIn);
-                        checkOutInfo = formatDate(departingBk.checkOut);
-                        nightsInfo = departingBk.nights;
-                        balanceInfo = formatCurrency(departingBk.balance);
-                        bookingIdRef = departingBk.id;
-                    } else if (arrivingBk) {
-                        cardClass = 'arriving';
-                        statusText = 'Arriving Today';
-                        badgeClass = 'badge-arriving';
-                        guestInfo = arrivingBk.clientName;
-                        checkInInfo = formatDate(arrivingBk.checkIn);
-                        checkOutInfo = formatDate(arrivingBk.checkOut);
-                        nightsInfo = arrivingBk.nights;
-                        balanceInfo = formatCurrency(arrivingBk.balance);
-                        bookingIdRef = arrivingBk.id;
-                    } else if (activeBk) {
-                        cardClass = 'occupied';
-                        statusText = activeBk.status;
-                        badgeClass = 'badge-occupied';
-                        guestInfo = activeBk.clientName;
-                        checkInInfo = formatDate(activeBk.checkIn);
-                        checkOutInfo = formatDate(activeBk.checkOut);
-                        nightsInfo = activeBk.nights;
-                        balanceInfo = formatCurrency(activeBk.balance);
-                        bookingIdRef = activeBk.id;
-                    }
-
-                    html += `
-                        <div class="col-6 col-md-4 col-lg-4">
-                            <div class="studio-card ${cardClass}" onclick="${bookingIdRef ? `openBookingModal('${bookingIdRef}')` : `openBookingModal()`}">
-                                <div class="studio-number">${s}</div>
-                                <span class="studio-status-badge ${badgeClass}">${statusText}</span>
-                                <div class="mt-2 small">
-                                    <div><strong>Guest:</strong> ${escapeHTML(guestInfo)}</div>
-                                    <div><strong>Check-in:</strong> ${checkInInfo}</div>
-                                    <div><strong>Check-out:</strong> ${checkOutInfo}</div>
-                                    <div><strong>Nights:</strong> ${nightsInfo}</div>
-                                    <div><strong>Balance:</strong> ${balanceInfo}</div>
-                                </div>
-                            </div>
-                        </div>`;
-                }
-                container.innerHTML = html;
-            }
-
-            // ==================== RENDER: CALENDAR ====================
-            function renderCalendar(year, month) {
-                if (year === undefined) {
-                    const now = new Date();
-                    calendarYear = now.getFullYear();
-                    calendarMonth = now.getMonth();
-                } else {
-                    calendarYear = year;
-                    calendarMonth = month;
-                }
-                document.getElementById('calendarMonthLabel').textContent =
-                    MONTH_NAMES[calendarMonth] + ' ' + calendarYear;
-
-                const firstDay = new Date(calendarYear, calendarMonth, 1).getDay();
-                const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
-                const daysInPrevMonth = new Date(calendarYear, calendarMonth, 0).getDate();
-                const today = getTodayStr();
-
-                const grid = document.getElementById('calendarGrid');
-                let html = '';
-                DAY_NAMES.forEach(d => { html +=
-                        `<div class="calendar-day-header">${d}</div>`; });
-
-                // Previous month days
-                for (let i = firstDay - 1; i >= 0; i--) {
-                    const d = daysInPrevMonth - i;
-                    const dateStr = `${calendarYear}-${String(calendarMonth === 0 ? 12 : calendarMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                    const actualYear = calendarMonth === 0 ? calendarYear - 1 : calendarYear;
-                    const actualMonth = calendarMonth === 0 ? 12 : calendarMonth;
-                    const fullDateStr =
-                        `${actualYear}-${String(actualMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                    html +=
-                        `<div class="calendar-day other-month" data-date="${fullDateStr}">${d}${getDotIndicators(fullDateStr)}</div>`;
-                }
-
-                // Current month days
-                for (let d = 1; d <= daysInMonth; d++) {
-                    const dateStr =
-                        `${calendarYear}-${String(calendarMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                    const isToday = dateStr === today;
-                    html +=
-                        `<div class="calendar-day${isToday ? ' today' : ''}" data-date="${dateStr}" onclick="showDayDetails('${dateStr}')">${d}${getDotIndicators(dateStr)}</div>`;
-                }
-
-                // Next month days
-                const remaining = 42 - (firstDay + daysInMonth);
-                for (let d = 1; d <= remaining; d++) {
-                    const actualMonth = calendarMonth === 11 ? 1 : calendarMonth + 2;
-                    const actualYear = calendarMonth === 11 ? calendarYear + 1 : calendarYear;
-                    const fullDateStr =
-                        `${actualYear}-${String(actualMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                    html +=
-                        `<div class="calendar-day other-month" data-date="${fullDateStr}">${d}${getDotIndicators(fullDateStr)}</div>`;
-                }
-
-                grid.innerHTML = html;
-            }
-
-            function getDotIndicators(dateStr) {
-                const dayBookings = bookings.filter(b =>
-                    b.checkIn <= dateStr && b.checkOut > dateStr && b.status !== 'Cancelled'
-                );
-                if (dayBookings.length === 0) return '';
-                const uniqueStatuses = [...new Set(dayBookings.map(b => b.status))];
-                return '<div class="d-flex gap-1 justify-content-center" style="position:absolute;bottom:4px;">' +
-                    uniqueStatuses.map(s => {
-                        const dotClass = s === 'Pending' ? 'dot-pending' : s === 'Confirmed' ? 'dot-confirmed' :
-                            s === 'Checked-in' ? 'dot-checked-in' : s === 'Checked-out' ? 'dot-checked-out' :
-                            'dot-cancelled';
-                        return `<span class="booking-dot ${dotClass}"></span>`;
-                    }).join('') + '</div>';
-            }
-
-            window.showDayDetails = function(dateStr) {
-                const dayBookings = bookings.filter(b =>
-                    b.checkIn <= dateStr && b.checkOut > dateStr && b.status !== 'Cancelled'
-                );
-                const container = document.getElementById('calendarDayDetails');
-                if (dayBookings.length === 0) {
-                    container.innerHTML =
-                        `<p class="text-muted mb-0 text-center">No bookings for ${formatDate(dateStr)}</p>`;
-                } else {
-                    container.innerHTML = `<h6 class="fw-semibold">Bookings for ${formatDate(dateStr)}</h6>` +
-                        dayBookings.map(b => `
-                            <div class="d-flex justify-content-between align-items-center py-1 border-bottom small" style="border-color:var(--border-color)!important;cursor:pointer;" onclick="openBookingModal('${b.id}')">
-                                <span><strong>${escapeHTML(b.clientName)}</strong> - Studio ${b.studioNumber}</span>
-                                <span class="badge ${getStatusBadgeClass(b.status)}">${b.status}</span>
-                            </div>
-                        `).join('');
-                }
-            };
-
-            window.navigateCalendar = function(offset) {
-                if (offset === 0) {
-                    const now = new Date();
-                    calendarYear = now.getFullYear();
-                    calendarMonth = now.getMonth();
-                } else {
-                    calendarMonth += offset;
-                    if (calendarMonth > 11) { calendarMonth = 0;
-                        calendarYear++; }
-                    if (calendarMonth < 0) { calendarMonth = 11;
-                        calendarYear--; }
-                }
-                renderCalendar(calendarYear, calendarMonth);
-            };
-
-            // ==================== REPORTS ====================
-            window.generateReport = function(type) {
-                const today = getTodayStr();
-                const now = new Date();
-                const container = document.getElementById('reportOutput');
-                let html = '';
-                let filtered = [];
-
-                switch (type) {
-                    case 'daily':
-                        filtered = bookings.filter(b => b.checkIn === today && b.status !== 'Cancelled');
-                        html = `<h6>Daily Report - ${formatDate(today)}</h6>
-                                <p>Check-ins today: <strong>${filtered.length}</strong></p>
-                                <p>Total Revenue: <strong>${formatCurrency(filtered.reduce((s,b)=>s+parseFloat(b.totalPrice||0),0))}</strong></p>`;
-                        break;
-                    case 'weekly':
-                        const weekStart = new Date(now);
-                        weekStart.setDate(now.getDate() - now.getDay());
-                        const weekStartStr = weekStart.toISOString().split('T')[0];
-                        const weekEnd = new Date(weekStart);
-                        weekEnd.setDate(weekStart.getDate() + 6);
-                        const weekEndStr = weekEnd.toISOString().split('T')[0];
-                        filtered = bookings.filter(b => b.checkIn >= weekStartStr && b.checkIn <= weekEndStr && b
-                            .status !== 'Cancelled');
-                        html =
-                            `<h6>Weekly Report (${formatDate(weekStartStr)} - ${formatDate(weekEndStr)})</h6>
-                                <p>Bookings: <strong>${filtered.length}</strong></p>
-                                <p>Revenue: <strong>${formatCurrency(filtered.reduce((s,b)=>s+parseFloat(b.totalPrice||0),0))}</strong></p>`;
-                        break;
-                    case 'monthly':
-                        filtered = bookings.filter(b => {
-                            const d = new Date(b.checkIn + 'T00:00:00');
-                            return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear() &&
-                                b.status !== 'Cancelled';
-                        });
-                        html =
-                            `<h6>Monthly Report - ${MONTH_NAMES[now.getMonth()]} ${now.getFullYear()}</h6>
-                                <p>Bookings: <strong>${filtered.length}</strong></p>
-                                <p>Revenue: <strong>${formatCurrency(filtered.reduce((s,b)=>s+parseFloat(b.totalPrice||0),0))}</strong></p>
-                                <p>Avg per Booking: <strong>${filtered.length>0?formatCurrency(filtered.reduce((s,b)=>s+parseFloat(b.totalPrice||0),0)/filtered.length):'N/A'}</strong></p>`;
-                        break;
-                    case 'revenue':
-                        const monthlyData = [];
-                        for (let m = 0; m < 12; m++) {
-                            const monthBks = bookings.filter(b => {
-                                const d = new Date(b.checkIn + 'T00:00:00');
-                                return d.getMonth() === m && d.getFullYear() === now.getFullYear() && b
-                                    .status !== 'Cancelled';
-                            });
-                            monthlyData.push({
-                                month: MONTH_NAMES[m],
-                                count: monthBks.length,
-                                revenue: monthBks.reduce((s, b) => s + parseFloat(b.totalPrice || 0),
-                                0)
-                            });
-                        }
-                        html =
-                            `<h6>Revenue Report - ${now.getFullYear()}</h6>
-                                <table class="table table-sm table-custom"><thead><tr><th>Month</th><th>Bookings</th><th>Revenue</th></tr></thead><tbody>` +
-                            monthlyData.map(d =>
-                                `<tr><td>${d.month}</td><td>${d.count}</td><td>${formatCurrency(d.revenue)}</td></tr>`
-                                ).join('') + `</tbody></table>
-                                <p class="fw-bold">Total Annual Revenue: ${formatCurrency(monthlyData.reduce((s,d)=>s+d.revenue,0))}</p>`;
-                        break;
-                    case 'occupancy':
-                        const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-                        let occupiedDays = 0;
-                        for (let d = 1; d <= daysInMonth; d++) {
-                            const dateStr =
-                                `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-                            const occupied = new Set(bookings.filter(b =>
-                                b.checkIn <= dateStr && b.checkOut > dateStr && b.status !== 'Cancelled' && b
-                                .status !== 'Checked-out'
-                            ).map(b => b.studioNumber)).size;
-                            occupiedDays += occupied;
-                        }
-                        const totalPossible = daysInMonth * TOTAL_STUDIOS;
-                        const occupancyRate = totalPossible > 0 ? (occupiedDays / totalPossible * 100) : 0;
-                        html =
-                            `<h6>Occupancy Report - ${MONTH_NAMES[now.getMonth()]} ${now.getFullYear()}</h6>
-                                <p>Total Studio-Days: <strong>${totalPossible}</strong></p>
-                                <p>Occupied Studio-Days: <strong>${occupiedDays}</strong></p>
-                                <p>Occupancy Rate: <strong>${occupancyRate.toFixed(1)}%</strong></p>
-                                <div class="progress" style="height:20px;"><div class="progress-bar bg-info" style="width:${occupancyRate}%;">${occupancyRate.toFixed(1)}%</div></div>`;
-                        break;
-                }
-                if (filtered.length > 0 && ['daily', 'weekly', 'monthly'].includes(type)) {
-                    html +=
-                        `<table class="table table-sm table-custom mt-2"><thead><tr><th>Client</th><th>Studio</th><th>Total</th><th>Status</th></tr></thead><tbody>` +
-                        filtered.map(b =>
-                            `<tr><td>${escapeHTML(b.clientName)}</td><td>Studio ${b.studioNumber}</td><td>${formatCurrency(b.totalPrice)}</td><td><span class="badge ${getStatusBadgeClass(b.status)}">${b.status}</span></td></tr>`
-                            ).join('') + `</tbody></table>`;
-                }
-                container.innerHTML = html;
-            };
-
-            // ==================== REFRESH ALL ====================
-            function refreshAllUI() {
-                const activeTab = document.querySelector('.tab-pane-custom.active');
-                if (activeTab) {
-                    const tabId = activeTab.id;
-                    if (tabId === 'tab-dashboard') renderDashboard();
-                    if (tabId === 'tab-bookings') renderBookingsTable();
-                    if (tabId === 'tab-studios') renderStudioCards();
-                    if (tabId === 'tab-calendar') renderCalendar();
-                }
-                updateNotificationBadge();
-            }
-
-            // ==================== INITIALIZATION ====================
-            function init() {
-                loadBookings();
-                loadTheme();
-                bookingModal = new bootstrap.Modal($bookingModalEl);
-                whatsappModal = new bootstrap.Modal($whatsappModalEl);
-
-                // Set today as default for date filter
-                document.getElementById('filterDate').value = '';
-
-                // Initial render
-                renderDashboard();
-                renderBookingsTable();
-                renderStudioCards();
-                renderCalendar();
-                updateNotificationBadge();
-
-                // Hide spinner
-                setTimeout(() => {
-                    $spinner.classList.add('hidden');
-                    setTimeout(() => $spinner.remove(), 500);
-                }, 400);
-
-                // Refresh notifications every 60 seconds
-                setInterval(updateNotificationBadge, 60000);
-
-                // Auto-save on page unload
-                window.addEventListener('beforeunload', () => saveBookings());
-            }
-
-            // Start the app
-            init();
-        })();
-    </script>
+              </div>
+            </div>`;
+          container.innerHTML += cardHTML;
+        }
+      });
+      
+      // Show message if no properties found
+      if (container.innerHTML === '') {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <h4 class="glow-text">No properties found</h4>
+            <p>Try adjusting your filters to see more results</p>
+          </div>`;
+      }
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderListings();
+      
+      // Add event listeners for filters
+      document.getElementById('typeFilter').addEventListener('change', renderListings);
+      document.getElementById('locationFilter').addEventListener('change', renderListings);
+      
+      // Reset filters button
+      document.getElementById('resetFilters').addEventListener('click', function() {
+        document.getElementById('typeFilter').value = 'all';
+        document.getElementById('locationFilter').value = 'all';
+        renderListings();
+      });
+      
+      // Add notification for Facebook links
+      document.querySelectorAll('a[href*="facebook.com"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const notification = document.getElementById('linkNotification');
+          notification.style.display = 'block';
+          setTimeout(() => {
+            notification.style.display = 'none';
+          }, 3000);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
